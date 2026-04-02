@@ -11,20 +11,18 @@
   <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --black:#0a0a0a;--dark:#111113;--dark-gray:#1a1a1e;--mid-gray:#2a2a2e;
-  --steel:#3a3a40;--steel-light:#4a4a52;--light-gray:#8a8a8e;
+  --black:#0a0a0a;--dark:#111110;--dark-gray:#1a1918;--mid-gray:#2a2926;
+  --steel:#3a3835;--steel-light:#4a4844;--light-gray:#8a8882;
   --warm-gray:#9a9490;--off-white:#e8e6e3;--white:#f5f4f2;
-  --accent:#c8102e;--accent-hover:#e01535;--tropical:#2d6a4f;
+  --accent:#E85D04;--accent-hover:#F77F00;--accent-dark:#DC2F02;
   --font-heading:'Space Grotesk',sans-serif;--font-body:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:var(--font-body);background:var(--black);color:var(--off-white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-ul{list-style:none}
-img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;display:block}
 
 .section__container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
-.section__label{display:flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em;color:var(--light-gray);margin-bottom:40px}
+.section__label{display:flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--light-gray);margin-bottom:40px}
 .section__label-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block}
 .section__heading{font-family:var(--font-heading);font-size:clamp(2.5rem,10vw,5rem);font-weight:700;line-height:.9;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:16px}
 .section__heading em{font-style:italic;color:var(--accent)}
@@ -33,82 +31,83 @@ img{max-width:100%;display:block}
 .btn--primary{background:var(--accent);color:#fff;padding:16px 32px}
 .btn--primary:hover{background:var(--accent-hover);transform:translateY(-2px)}
 .btn--outline{background:transparent;color:var(--off-white);padding:14px 28px;border:1px solid var(--steel)}
-.btn--outline:hover{border-color:var(--off-white);background:rgba(255,255,255,.03)}
+.btn--outline:hover{border-color:var(--accent);color:var(--accent)}
 .btn--large{padding:18px 40px;font-size:1rem}
 .btn--full{width:100%}
 .btn__icon{width:20px;height:20px;flex-shrink:0}
 
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 20px;transition:background .3s ease}
-.nav--scrolled{background:rgba(10,10,10,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nav--scrolled{background:rgba(10,10,10,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,93,4,.15)}
 .nav__inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto}
 .nav__logo{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;letter-spacing:.08em;text-transform:uppercase}
-.nav__logo span{display:block;font-size:.6rem;font-weight:500;letter-spacing:.2em;color:var(--light-gray);margin-top:-2px}
+.nav__logo span{display:block;font-size:.6rem;font-weight:500;letter-spacing:.2em;color:var(--accent);margin-top:-2px}
 .nav__links{display:none;align-items:center;gap:28px}
 .nav__links a{font-size:.8rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--light-gray);transition:color .3s}
-.nav__links a:hover{color:var(--white)}
+.nav__links a:hover{color:var(--accent)}
 .nav__book{background:var(--accent);color:#fff;padding:10px 20px;font-family:var(--font-heading);font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s}
 .nav__book:hover{background:var(--accent-hover)}
 .nav__toggle{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.nav__toggle span{width:24px;height:2px;background:var(--off-white);transition:all .3s}
+.nav__toggle span{display:block;width:22px;height:2px;background:var(--off-white);transition:all .3s}
 .nav__mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
 .nav__mobile--open{display:flex}
-.nav__mobile a{font-family:var(--font-heading);font-size:1.5rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--off-white)}
-.nav__mobile-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--off-white);font-size:2rem;cursor:pointer}
+.nav__mobile a{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--off-white);transition:color .3s}
+.nav__mobile a:hover{color:var(--accent)}
+.nav__mobile-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--off-white);font-size:1.5rem;cursor:pointer}
 
 /* HERO */
-.hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:120px 20px 60px;overflow:hidden;background:var(--dark)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(200,16,46,.06),transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(45,106,79,.04),transparent 60%);pointer-events:none}
-.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");opacity:.4;pointer-events:none}
+.hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:120px 20px 60px;overflow:hidden;background:var(--black)}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1}
 .hero__bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;user-select:none}
-.hero__bg-text span{font-family:var(--font-heading);font-size:clamp(3rem,12vw,10rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.04);line-height:.9;white-space:nowrap}
+.hero__bg-text span{font-family:var(--font-heading);font-size:clamp(3rem,12vw,10rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:transparent;-webkit-text-stroke:1px rgba(232,93,4,.06);line-height:.9;white-space:nowrap}
 .hero__content{position:relative;z-index:2;text-align:center;max-width:700px}
-.hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--light-gray);margin-bottom:32px;padding:8px 16px;border:1px solid var(--steel)}
-.hero__badge-dot{width:6px;height:6px;background:var(--tropical);border-radius:50%;display:inline-block}
-.hero__title{font-family:var(--font-heading);font-size:clamp(3rem,13vw,7rem);font-weight:700;line-height:.9;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:24px;color:var(--white)}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);margin-bottom:32px;padding:8px 16px;border:1px solid rgba(232,93,4,.3)}
+.hero__badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.hero__title{font-family:var(--font-heading);font-size:clamp(3.5rem,14vw,8rem);font-weight:700;line-height:.85;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:24px;color:var(--white)}
+.hero__title span{color:var(--accent)}
 .hero__subtitle{font-size:1rem;color:var(--light-gray);line-height:1.7;margin-bottom:40px;max-width:440px;margin-left:auto;margin-right:auto}
-.hero__scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px}
-.hero__scroll span{width:1px;height:40px;background:linear-gradient(to bottom,var(--light-gray),transparent);animation:scrollPulse 2s ease-in-out infinite}
+.hero__scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2}
+.hero__scroll span{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s ease-in-out infinite}
 .hero__scroll p{font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:var(--light-gray)}
 @keyframes scrollPulse{0%,100%{opacity:.3}50%{opacity:1}}
 
 /* MARQUEE */
 .marquee{background:var(--accent);padding:14px 0;overflow:hidden;white-space:nowrap}
 .marquee__track{display:flex;gap:40px;animation:marqueeScroll 20s linear infinite}
-.marquee__track span{font-family:var(--font-heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:#fff;flex-shrink:0}
+.marquee__track span{font-family:var(--font-heading);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--black);flex-shrink:0}
 @keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ABOUT */
-.about{padding:100px 0;background:var(--black);border-bottom:1px solid var(--mid-gray)}
+.about{padding:100px 0;background:var(--black);border-top:1px solid var(--mid-gray)}
 .about__grid{display:grid;gap:48px}
 .about__title{font-family:var(--font-heading);font-size:clamp(2.5rem,10vw,5rem);font-weight:700;line-height:.9;text-transform:uppercase;letter-spacing:-.02em}
 .about__title em{font-style:italic;color:var(--accent)}
 .about__text{font-size:.95rem;color:var(--light-gray);line-height:1.8;margin-bottom:20px}
-.about__text strong{color:var(--off-white)}
+.about__text strong{color:var(--accent)}
 .about__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;padding-top:40px;border-top:1px solid var(--steel)}
 .about__stat{text-align:center}
-.about__stat-number{display:block;font-family:var(--font-heading);font-size:1.8rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.about__stat-number{display:block;font-family:var(--font-heading);font-size:1.8rem;font-weight:700;color:var(--accent);margin-bottom:4px}
 .about__stat-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:var(--light-gray)}
 
 /* COME TO YOU */
-.come-to-you{padding:100px 0;background:var(--dark);border-bottom:1px solid var(--mid-gray)}
-.come-to-you__intro{max-width:700px;margin-bottom:60px}
-.come-to-you__bigtext{font-family:var(--font-heading);font-size:clamp(1.3rem,4vw,2rem);font-weight:600;color:var(--white);line-height:1.4;margin-bottom:24px;border-left:3px solid var(--accent);padding-left:20px}
-.come-to-you__bigtext em{color:var(--accent);font-style:normal}
-.come-to-you__cards{display:grid;gap:16px}
+.come-to-you{padding:100px 0;background:var(--dark);border-top:1px solid var(--mid-gray)}
+.come-to-you__highlight{font-family:var(--font-heading);font-size:clamp(1.3rem,4vw,2rem);font-weight:700;color:var(--white);line-height:1.3;margin-bottom:48px;max-width:700px;text-transform:uppercase;letter-spacing:-.01em}
+.come-to-you__highlight span{color:var(--accent);display:inline}
+.come-to-you__grid{display:grid;gap:16px}
 .come-to-you__card{background:var(--dark-gray);border:1px solid var(--steel);padding:32px 24px;transition:border-color .3s}
-.come-to-you__card:hover{border-color:var(--steel-light)}
-.come-to-you__card-icon{font-size:1.5rem;margin-bottom:16px}
-.come-to-you__card-title{font-family:var(--font-heading);font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px;color:var(--white)}
-.come-to-you__card-text{font-size:.9rem;color:var(--light-gray);line-height:1.7}
+.come-to-you__card:hover{border-color:var(--accent)}
+.come-to-you__card-icon{font-size:1.5rem;margin-bottom:16px;display:block;color:var(--accent)}
+.come-to-you__card-title{font-family:var(--font-heading);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;color:var(--white)}
+.come-to-you__card-text{font-size:.85rem;color:var(--light-gray);line-height:1.7}
 
 /* PRICING */
-.pricing{padding:100px 0;background:var(--black);border-bottom:1px solid var(--mid-gray)}
+.pricing{padding:100px 0;background:var(--black);border-top:1px solid var(--mid-gray)}
 .pricing__sub{font-size:.95rem;color:var(--light-gray);margin-bottom:48px}
 .pricing__grid{display:grid;gap:16px}
 .pricing__card{position:relative;background:var(--dark-gray);border:1px solid var(--steel);padding:32px 24px;transition:border-color .3s}
-.pricing__card:hover{border-color:var(--steel-light)}
-.pricing__card--featured{border-color:var(--accent);background:linear-gradient(135deg,var(--dark-gray),rgba(200,16,46,.05))}
+.pricing__card:hover{border-color:rgba(232,93,4,.4)}
+.pricing__card--featured{border-color:var(--accent);background:linear-gradient(135deg,var(--dark-gray),rgba(232,93,4,.08))}
 .pricing__card-badge{position:absolute;top:0;right:24px;background:var(--accent);color:#fff;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:6px 12px}
 .pricing__card-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
 .pricing__card-icon{color:var(--accent);font-size:1rem}
@@ -121,29 +120,32 @@ img{max-width:100%;display:block}
 .pricing__card-list li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0}
 
 /* SOCIAL PROOF */
-.proof{padding:100px 0;background:var(--dark);border-bottom:1px solid var(--mid-gray);overflow:hidden}
-.proof__grid{display:grid;grid-template-columns:1fr;gap:16px;height:400px;overflow:hidden;position:relative}
-.proof__col{display:flex;flex-direction:column;gap:16px;animation:proofScroll 25s linear infinite}
-.proof__col:nth-child(2){animation-duration:30s;animation-direction:reverse}
-.proof__col:nth-child(3){animation-duration:20s}
+.proof{padding:100px 0;background:var(--dark);border-top:1px solid var(--mid-gray);overflow:hidden}
+.proof__columns{display:grid;grid-template-columns:1fr;gap:16px;max-height:500px;overflow:hidden;position:relative}
+.proof__columns::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--dark));pointer-events:none;z-index:2}
+.proof__col{display:flex;flex-direction:column;gap:16px}
+.proof__col-inner{display:flex;flex-direction:column;gap:16px;animation:proofScroll 30s linear infinite}
+.proof__col:nth-child(2) .proof__col-inner{animation-duration:25s;animation-direction:reverse}
+.proof__col:nth-child(3) .proof__col-inner{animation-duration:35s}
 @keyframes proofScroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 .proof__card{background:var(--dark-gray);border:1px solid var(--steel);padding:24px;flex-shrink:0}
-.proof__card-stars{color:#f0a500;font-size:.9rem;margin-bottom:12px;letter-spacing:2px}
-.proof__card-text{font-size:.9rem;color:var(--light-gray);line-height:1.7;margin-bottom:16px;font-style:italic}
-.proof__card-author{font-family:var(--font-heading);font-size:.8rem;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:.05em}
-.proof__card-location{font-size:.7rem;color:var(--warm-gray);margin-top:2px}
+.proof__card-stars{color:var(--accent);font-size:.8rem;letter-spacing:2px;margin-bottom:12px}
+.proof__card-text{font-size:.85rem;color:var(--light-gray);line-height:1.7;margin-bottom:16px;font-style:italic}
+.proof__card-author{font-family:var(--font-heading);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--white)}
+.proof__card-loc{font-size:.7rem;color:var(--light-gray);margin-top:2px}
 
 /* GALLERY */
-.gallery{padding:100px 0;background:var(--black);border-bottom:1px solid var(--mid-gray)}
+.gallery{padding:100px 0;background:var(--black);border-top:1px solid var(--mid-gray)}
 .gallery__track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px}
 .gallery__track::-webkit-scrollbar{display:none}
-.gallery__card{flex:0 0 280px;height:320px;scroll-snap-align:start;position:relative;overflow:hidden;border:1px solid var(--steel)}
-.gallery__card-img{width:100%;height:100%;object-fit:cover;display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:4rem;background:var(--dark-gray);color:var(--mid-gray)}
-.gallery__card-label{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(10,10,10,.9));font-family:var(--font-heading);font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--white)}
+.gallery__card{flex:0 0 280px;height:360px;scroll-snap-align:start;position:relative;overflow:hidden;border:1px solid var(--steel)}
+.gallery__card-bg{width:100%;height:100%;display:flex;align-items:flex-end;padding:20px}
+.gallery__card-label{font-family:var(--font-heading);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#fff;background:rgba(10,10,10,.7);padding:8px 16px;backdrop-filter:blur(4px)}
 
 /* CTA */
-.cta{padding:100px 0;background:var(--dark)}
-.cta__inner{text-align:center;max-width:600px;margin:0 auto}
+.cta{padding:100px 0;background:var(--dark);border-top:1px solid var(--mid-gray);position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(232,93,4,.08),transparent 70%);pointer-events:none}
+.cta__inner{text-align:center;max-width:600px;margin:0 auto;position:relative;z-index:2}
 .cta__title{font-family:var(--font-heading);font-size:clamp(2.5rem,10vw,5rem);font-weight:700;line-height:.9;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:20px}
 .cta__title em{font-style:italic;color:var(--accent)}
 .cta__text{font-size:1rem;color:var(--light-gray);line-height:1.7;margin-bottom:36px}
@@ -153,10 +155,10 @@ img{max-width:100%;display:block}
 .footer__inner{max-width:1200px;margin:0 auto}
 .footer__top{display:flex;flex-direction:column;gap:32px;margin-bottom:40px}
 .footer__logo{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;letter-spacing:.08em;text-transform:uppercase}
-.footer__logo span{display:block;font-size:.6rem;font-weight:500;letter-spacing:.2em;color:var(--light-gray);margin-top:-2px}
+.footer__logo span{display:block;font-size:.6rem;font-weight:500;letter-spacing:.2em;color:var(--accent);margin-top:-2px}
 .footer__links{display:flex;flex-wrap:wrap;gap:24px}
 .footer__links a{font-size:.8rem;color:var(--light-gray);text-transform:uppercase;letter-spacing:.1em;transition:color .3s}
-.footer__links a:hover{color:var(--white)}
+.footer__links a:hover{color:var(--accent)}
 .footer__bottom{display:flex;flex-direction:column;gap:4px;padding-top:24px;border-top:1px solid rgba(255,255,255,.05)}
 .footer__bottom p{font-size:.7rem;color:var(--light-gray);letter-spacing:.05em}
 
@@ -173,10 +175,10 @@ img{max-width:100%;display:block}
   .hero{padding:140px 40px 80px}
   .hero__subtitle{font-size:1.1rem}
   .about__grid{grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-  .come-to-you__cards{grid-template-columns:repeat(3,1fr);gap:20px}
+  .come-to-you__grid{grid-template-columns:repeat(3,1fr);gap:20px}
   .pricing__grid{grid-template-columns:repeat(3,1fr);gap:20px}
-  .proof__grid{grid-template-columns:repeat(3,1fr);height:500px}
-  .gallery__card{flex:0 0 320px;height:360px}
+  .proof__columns{grid-template-columns:repeat(3,1fr);max-height:600px}
+  .gallery__card{flex:0 0 320px;height:400px}
   .footer__top{flex-direction:row;align-items:center;justify-content:space-between}
   .footer__bottom{flex-direction:row;justify-content:space-between}
 }
@@ -209,35 +211,33 @@ img{max-width:100%;display:block}
         <a href="#proof">Proof</a>
         <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="nav__book">Book Now</a>
       </div>
-      <button class="nav__toggle" aria-label="Menu" onclick="document.querySelector('.nav__mobile').classList.add('nav__mobile--open')">
+      <button class="nav__toggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
   <!-- MOBILE NAV -->
-  <div class="nav__mobile">
-    <button class="nav__mobile-close" onclick="this.parentElement.classList.remove('nav__mobile--open')">&times;</button>
-    <a href="#about" onclick="this.parentElement.classList.remove('nav__mobile--open')">About</a>
-    <a href="#pricing" onclick="this.parentElement.classList.remove('nav__mobile--open')">Pricing</a>
-    <a href="#proof" onclick="this.parentElement.classList.remove('nav__mobile--open')">Proof</a>
-    <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="nav__book" style="margin-top:16px">Book Now</a>
+  <div class="nav__mobile" id="mobileNav">
+    <button class="nav__mobile-close" aria-label="Close">&times;</button>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#pricing" onclick="closeMobile()">Pricing</a>
+    <a href="#proof" onclick="closeMobile()">Proof</a>
+    <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" onclick="closeMobile()">Book Now</a>
   </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero__bg-text" aria-hidden="true">
-      <span>ULU HOME CUTS</span>
-      <span>ULU HOME CUTS</span>
-      <span>ULU HOME CUTS</span>
+      <span>ULU HOME CUTS</span><span>ULU HOME CUTS</span><span>ULU HOME CUTS</span>
     </div>
     <div class="hero__content">
       <div class="hero__badge">
         <span class="hero__badge-dot"></span>
         Mobile Barber — Bali
       </div>
-      <h1 class="hero__title">WE COME<br>TO YOU</h1>
-      <p class="hero__subtitle">Fresh cuts at your door. No queues, no waiting rooms. Book in advance and skip the line.</p>
+      <h1 class="hero__title">WE COME<br><span>TO YOU</span></h1>
+      <p class="hero__subtitle">Skip the queues. Book in advance and get a fresh cut at your door — home, villa, or hotel. Anywhere in Bali.</p>
       <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--primary btn--large">
         <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Book via WhatsApp
@@ -249,16 +249,7 @@ img{max-width:100%;display:block}
   <!-- MARQUEE -->
   <div class="marquee">
     <div class="marquee__track">
-      <span>WE COME TO YOU</span><span>&#10038;</span>
-      <span>FRESH CUTS IN BALI</span><span>&#10038;</span>
-      <span>6 YEARS EXPERIENCE</span><span>&#10038;</span>
-      <span>BOOK IN ADVANCE</span><span>&#10038;</span>
-      <span>SKIP THE QUEUES</span><span>&#10038;</span>
-      <span>WE COME TO YOU</span><span>&#10038;</span>
-      <span>FRESH CUTS IN BALI</span><span>&#10038;</span>
-      <span>6 YEARS EXPERIENCE</span><span>&#10038;</span>
-      <span>BOOK IN ADVANCE</span><span>&#10038;</span>
-      <span>SKIP THE QUEUES</span><span>&#10038;</span>
+      <span>WE COME TO YOU</span><span>&#9670;</span><span>FRESH CUTS</span><span>&#9670;</span><span>BALI</span><span>&#9670;</span><span>BOOK AHEAD</span><span>&#9670;</span><span>SKIP THE QUEUES</span><span>&#9670;</span><span>WE COME TO YOU</span><span>&#9670;</span><span>FRESH CUTS</span><span>&#9670;</span><span>BALI</span><span>&#9670;</span><span>BOOK AHEAD</span><span>&#9670;</span><span>SKIP THE QUEUES</span><span>&#9670;</span>
     </div>
   </div>
 
@@ -267,13 +258,11 @@ img{max-width:100%;display:block}
     <div class="section__container">
       <div class="section__label"><span class="section__label-dot"></span>About</div>
       <div class="about__grid">
+        <div><h2 class="about__title">MEET<br><em>RANGGA</em></h2></div>
         <div>
-          <h2 class="about__title">MEET<br><em>RANGGA</em></h2>
-        </div>
-        <div>
-          <p class="about__text">With <strong>6 years of barbering experience</strong>, Rangga brings precision, style, and the full barbershop experience directly to your door in Bali.</p>
+          <p class="about__text">With <strong>6 years of barbering experience</strong>, Rangga brings precision, style, and the full barbershop experience directly to your door.</p>
           <p class="about__text">No more sitting in crowded waiting rooms. No more wasted time. Ulu Home Cuts is a mobile barber service — we come to you, whether you're at home, your villa, or your hotel.</p>
-          <p class="about__text">Perfect for individuals or groups who want a barber session together. Professional tools, clean setup, quality results every time.</p>
+          <p class="about__text">Perfect for individuals looking for a fresh cut, or groups who want a barber session together. Professional tools, clean setup, quality results every time.</p>
           <div class="about__stats">
             <div class="about__stat"><span class="about__stat-number">6+</span><span class="about__stat-label">Years Experience</span></div>
             <div class="about__stat"><span class="about__stat-number">1000+</span><span class="about__stat-label">Happy Clients</span></div>
@@ -289,28 +278,23 @@ img{max-width:100%;display:block}
     <div class="section__container">
       <div class="section__label"><span class="section__label-dot"></span>Mobile Service</div>
       <h2 class="section__heading">WE COME<br><em>TO YOU</em></h2>
-      <div class="come-to-you__intro">
-        <p class="come-to-you__bigtext">You don't need anything. We bring everything we need. Just a <em>plug socket</em> and I'm good to go.</p>
-      </div>
-      <div class="come-to-you__cards">
+      <p class="come-to-you__highlight">You don't need anything. We bring everything — clippers, cape, the lot. <span>Just a plug socket and I'm good to go.</span></p>
+      <div class="come-to-you__grid">
         <div class="come-to-you__card">
-          <div class="come-to-you__card-icon">&#127968;</div>
+          <span class="come-to-you__card-icon">&#9679;</span>
           <h3 class="come-to-you__card-title">Your Location</h3>
-          <p class="come-to-you__card-text">Home, villa, hotel, co-working space — wherever you are in Bali, we'll come to you.</p>
+          <p class="come-to-you__card-text">Home, villa, hotel, co-working space — wherever you are in Bali, we'll be there.</p>
         </div>
         <div class="come-to-you__card">
-          <div class="come-to-you__card-icon">&#9986;</div>
+          <span class="come-to-you__card-icon">&#9879;</span>
           <h3 class="come-to-you__card-title">Full Setup</h3>
-          <p class="come-to-you__card-text">Professional clippers, scissors, capes, mirrors — everything for a proper barbershop experience.</p>
+          <p class="come-to-you__card-text">Professional clippers, trimmers, cape, mirror — we bring the full barbershop to you. All we need is a power socket.</p>
         </div>
         <div class="come-to-you__card">
-          <div class="come-to-you__card-icon">&#128197;</div>
+          <span class="come-to-you__card-icon">&#8986;</span>
           <h3 class="come-to-you__card-title">Book Ahead</h3>
-          <p class="come-to-you__card-text">Book in advance to avoid the queues. Pick your time, we'll be there. No waiting around.</p>
+          <p class="come-to-you__card-text">Skip the queues. Book in advance via WhatsApp and lock in your time slot. No waiting, no hassle.</p>
         </div>
-      </div>
-      <div style="margin-top:48px;text-align:center">
-        <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--primary btn--large">Book Your Slot</a>
       </div>
     </div>
   </section>
@@ -323,22 +307,22 @@ img{max-width:100%;display:block}
       <p class="pricing__sub">No hidden fees. No surprises. Just quality cuts.</p>
       <div class="pricing__grid">
         <div class="pricing__card">
-          <div class="pricing__card-header"><span class="pricing__card-icon">&#10038;</span><h3 class="pricing__card-title">Haircut</h3></div>
+          <div class="pricing__card-header"><span class="pricing__card-icon">&#9670;</span><h3 class="pricing__card-title">Haircut</h3></div>
           <div class="pricing__card-price"><span class="pricing__card-amount">250K</span><span class="pricing__card-currency">IDR</span></div>
           <ul class="pricing__card-list"><li>Skin Fade</li><li>Long Cut</li><li>Buzz Cut</li><li>All hair styles</li></ul>
           <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--outline btn--full">Book This</a>
         </div>
         <div class="pricing__card pricing__card--featured">
           <div class="pricing__card-badge">Most Popular</div>
-          <div class="pricing__card-header"><span class="pricing__card-icon">&#10038;</span><h3 class="pricing__card-title">Haircut + Beard</h3></div>
+          <div class="pricing__card-header"><span class="pricing__card-icon">&#9670;</span><h3 class="pricing__card-title">Haircut + Beard</h3></div>
           <div class="pricing__card-price"><span class="pricing__card-amount">400K</span><span class="pricing__card-currency">IDR</span></div>
-          <ul class="pricing__card-list"><li>Any haircut style</li><li>Beard trim &amp; shape</li><li>Full grooming session</li><li>Clean lineup</li></ul>
+          <ul class="pricing__card-list"><li>Any haircut style</li><li>Beard trim & shape</li><li>Full grooming session</li><li>Clean lineup</li></ul>
           <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--primary btn--full">Book This</a>
         </div>
         <div class="pricing__card">
-          <div class="pricing__card-header"><span class="pricing__card-icon">&#10038;</span><h3 class="pricing__card-title">Beard Only</h3></div>
+          <div class="pricing__card-header"><span class="pricing__card-icon">&#9670;</span><h3 class="pricing__card-title">Beard Only</h3></div>
           <div class="pricing__card-price"><span class="pricing__card-amount">150K</span><span class="pricing__card-currency">IDR</span></div>
-          <ul class="pricing__card-list"><li>Beard trim</li><li>Shape &amp; line up</li><li>No haircut</li><li>Quick &amp; precise</li></ul>
+          <ul class="pricing__card-list"><li>Beard trim</li><li>Shape & line up</li><li>No haircut</li><li>Quick & precise</li></ul>
           <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--outline btn--full">Book This</a>
         </div>
       </div>
@@ -349,32 +333,33 @@ img{max-width:100%;display:block}
   <section class="proof" id="proof">
     <div class="section__container">
       <div class="section__label"><span class="section__label-dot"></span>Social Proof</div>
-      <h2 class="section__heading" style="margin-bottom:48px">WHAT OTHERS<br><em>SAY</em></h2>
-      <div class="proof__grid">
-        <div class="proof__col">
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Rangga came to our villa and gave 4 of us fresh fades. Absolutely quality work, felt like a proper barbershop."</p><p class="proof__card-author">Jake M.</p><p class="proof__card-location">Canggu, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Best haircut I've had in Bali. Super convenient — he just rocked up to my place with everything."</p><p class="proof__card-author">Tom R.</p><p class="proof__card-location">Seminyak, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Booked a day before, Rangga was on time and the cut was clean. Will definitely use again."</p><p class="proof__card-author">Chris L.</p><p class="proof__card-location">Uluwatu, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Rangga came to our villa and gave 4 of us fresh fades. Absolutely quality work, felt like a proper barbershop."</p><p class="proof__card-author">Jake M.</p><p class="proof__card-location">Canggu, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Best haircut I've had in Bali. Super convenient — he just rocked up to my place with everything."</p><p class="proof__card-author">Tom R.</p><p class="proof__card-location">Seminyak, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Booked a day before, Rangga was on time and the cut was clean. Will definitely use again."</p><p class="proof__card-author">Chris L.</p><p class="proof__card-location">Uluwatu, Bali</p></div>
-        </div>
-        <div class="proof__col">
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"No more finding a barbershop and waiting an hour. This is the way to do it. Professional and easy."</p><p class="proof__card-author">Dan W.</p><p class="proof__card-location">Ubud, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Got a skin fade and beard trim. Rangga is seriously skilled. The whole thing took 40 mins."</p><p class="proof__card-author">Matt K.</p><p class="proof__card-location">Canggu, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"I've been going to Rangga every 3 weeks since I moved to Bali. Consistent quality every time."</p><p class="proof__card-author">Alex P.</p><p class="proof__card-location">Berawa, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"No more finding a barbershop and waiting an hour. This is the way to do it. Professional and easy."</p><p class="proof__card-author">Dan W.</p><p class="proof__card-location">Ubud, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Got a skin fade and beard trim. Rangga is seriously skilled. The whole thing took 40 mins."</p><p class="proof__card-author">Matt K.</p><p class="proof__card-location">Canggu, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"I've been going to Rangga every 3 weeks since I moved to Bali. Consistent quality every time."</p><p class="proof__card-author">Alex P.</p><p class="proof__card-location">Berawa, Bali</p></div>
-        </div>
-        <div class="proof__col">
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"My mates and I booked a group session. Rangga sorted all 5 of us out. Legends."</p><p class="proof__card-author">Sam B.</p><p class="proof__card-location">Uluwatu, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Way better than any barbershop I found walking around. And he comes to you — what more could you want?"</p><p class="proof__card-author">Ryan T.</p><p class="proof__card-location">Kuta, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Heard about Ulu Home Cuts from a mate. Booked same day, got a clean fade. 10/10 recommend."</p><p class="proof__card-author">Will H.</p><p class="proof__card-location">Seminyak, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"My mates and I booked a group session. Rangga sorted all 5 of us out. Legends."</p><p class="proof__card-author">Sam B.</p><p class="proof__card-location">Uluwatu, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Way better than any barbershop I found walking around. And he comes to you — what more could you want?"</p><p class="proof__card-author">Ryan T.</p><p class="proof__card-location">Kuta, Bali</p></div>
-          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Heard about Ulu Home Cuts from a mate. Booked same day, got a clean fade. 10/10 recommend."</p><p class="proof__card-author">Will H.</p><p class="proof__card-location">Seminyak, Bali</p></div>
-        </div>
+      <h2 class="section__heading">WHAT OTHERS<br><em>SAY</em></h2>
+      <p style="font-size:.95rem;color:var(--light-gray);margin-bottom:48px">Check out what others say about their experience.</p>
+      <div class="proof__columns">
+        <div class="proof__col"><div class="proof__col-inner">
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Rangga came to our villa and cut 4 of us back to back. Everyone was stoked with the result. So much better than trekking to a shop."</p><p class="proof__card-author">Jake M.</p><p class="proof__card-loc">Uluwatu, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Best fade I've had in Bali, hands down. And he came to my apartment. Absolute legend."</p><p class="proof__card-author">Tom R.</p><p class="proof__card-loc">Canggu, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Professional setup, great chat, perfect cut. Booked him again the following week."</p><p class="proof__card-author">Dan W.</p><p class="proof__card-loc">Seminyak, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Rangga came to our villa and cut 4 of us back to back. Everyone was stoked with the result."</p><p class="proof__card-author">Jake M.</p><p class="proof__card-loc">Uluwatu, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Best fade I've had in Bali, hands down. And he came to my apartment."</p><p class="proof__card-author">Tom R.</p><p class="proof__card-loc">Canggu, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Professional setup, great chat, perfect cut."</p><p class="proof__card-author">Dan W.</p><p class="proof__card-loc">Seminyak, Bali</p></div>
+        </div></div>
+        <div class="proof__col"><div class="proof__col-inner">
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Booked for our surf trip crew — 6 guys all got fresh cuts poolside. Unreal service."</p><p class="proof__card-author">Chris P.</p><p class="proof__card-loc">Bingin, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"So convenient. WhatsApp'd him in the morning, had a fresh cut by lunch. No waiting around."</p><p class="proof__card-author">Alex K.</p><p class="proof__card-loc">Ubud, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"My beard has never looked this clean. Rangga really knows his craft."</p><p class="proof__card-author">Sam L.</p><p class="proof__card-loc">Kuta, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Booked for our surf trip crew — 6 guys all got fresh cuts poolside."</p><p class="proof__card-author">Chris P.</p><p class="proof__card-loc">Bingin, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"So convenient. WhatsApp'd him in the morning, had a fresh cut by lunch."</p><p class="proof__card-author">Alex K.</p><p class="proof__card-loc">Ubud, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"My beard has never looked this clean."</p><p class="proof__card-author">Sam L.</p><p class="proof__card-loc">Kuta, Bali</p></div>
+        </div></div>
+        <div class="proof__col"><div class="proof__col-inner">
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Had Rangga come to our Airbnb before a wedding. Looked sharp for the photos. 10/10."</p><p class="proof__card-author">Mike T.</p><p class="proof__card-loc">Nusa Dua, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Mate, this is the only way to get a haircut. Why would you go to a shop when Rangga comes to you?"</p><p class="proof__card-author">Ben S.</p><p class="proof__card-loc">Uluwatu, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Clean, professional, on time. Everything you want from a barber. Highly recommend."</p><p class="proof__card-author">Ryan D.</p><p class="proof__card-loc">Canggu, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Had Rangga come to our Airbnb before a wedding. Looked sharp. 10/10."</p><p class="proof__card-author">Mike T.</p><p class="proof__card-loc">Nusa Dua, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"This is the only way to get a haircut in Bali."</p><p class="proof__card-author">Ben S.</p><p class="proof__card-loc">Uluwatu, Bali</p></div>
+          <div class="proof__card"><div class="proof__card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="proof__card-text">"Clean, professional, on time. Highly recommend."</p><p class="proof__card-author">Ryan D.</p><p class="proof__card-loc">Canggu, Bali</p></div>
+        </div></div>
       </div>
     </div>
   </section>
@@ -383,17 +368,16 @@ img{max-width:100%;display:block}
   <section class="gallery">
     <div class="section__container">
       <div class="section__label"><span class="section__label-dot"></span>Gallery</div>
-      <h2 class="section__heading" style="margin-bottom:48px">THE FINISHED<br><em>PRODUCT</em></h2>
-      <div class="gallery__track">
-        <div class="gallery__card"><div class="gallery__card-img" style="background:linear-gradient(135deg,#1a1a2e,#2a2a3e)">&#9986;</div><div class="gallery__card-label">Skin Fade</div></div>
-        <div class="gallery__card"><div class="gallery__card-img" style="background:linear-gradient(135deg,#2a1a1a,#3e2a2a)">&#9986;</div><div class="gallery__card-label">Buzz Cut</div></div>
-        <div class="gallery__card"><div class="gallery__card-img" style="background:linear-gradient(135deg,#1a2a1a,#2a3e2a)">&#9986;</div><div class="gallery__card-label">Long Textured</div></div>
-        <div class="gallery__card"><div class="gallery__card-img" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a)">&#9986;</div><div class="gallery__card-label">Taper Fade</div></div>
-        <div class="gallery__card"><div class="gallery__card-img" style="background:linear-gradient(135deg,#2a2a1a,#3e3e2a)">&#9986;</div><div class="gallery__card-label">Beard Trim</div></div>
-        <div class="gallery__card"><div class="gallery__card-img" style="background:linear-gradient(135deg,#1a2a2a,#2a3e3e)">&#9986;</div><div class="gallery__card-label">Classic Cut</div></div>
-        <div class="gallery__card"><div class="gallery__card-img" style="background:linear-gradient(135deg,#2a1a2a,#3e2a3e)">&#9986;</div><div class="gallery__card-label">Mid Fade</div></div>
-        <div class="gallery__card"><div class="gallery__card-img" style="background:linear-gradient(135deg,#1a1a2a,#2a2a3e)">&#9986;</div><div class="gallery__card-label">Crop Top</div></div>
-      </div>
+      <h2 class="section__heading">THE FINISHED<br><em>PRODUCT</em></h2>
+      <p style="font-size:.95rem;color:var(--light-gray);margin-bottom:48px">Check out some photos of cuts.</p>
+    </div>
+    <div class="gallery__track" style="padding-left:20px">
+      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#1a1918,#3a3835)"><span class="gallery__card-label">Skin Fade</span></div></div>
+      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#2a2926,#4a4844)"><span class="gallery__card-label">Textured Crop</span></div></div>
+      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#1a1918,rgba(232,93,4,.15))"><span class="gallery__card-label">Buzz Cut</span></div></div>
+      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#2a2926,#3a3835)"><span class="gallery__card-label">Long Trim</span></div></div>
+      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#1a1918,rgba(232,93,4,.1))"><span class="gallery__card-label">Beard Shape</span></div></div>
+      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#2a2926,#4a4844)"><span class="gallery__card-label">Full Grooming</span></div></div>
     </div>
   </section>
 
@@ -436,27 +420,26 @@ img{max-width:100%;display:block}
   </a>
 
   <script>
-  // Nav scroll effect
-  const nav = document.querySelector('.nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('nav--scrolled', window.scrollY > 50);
-  });
+// Nav scroll effect
+const nav=document.querySelector('.nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('nav--scrolled',window.scrollY>50)});
 
-  // Fade-in on scroll
-  const fadeEls = document.querySelectorAll('.about__grid > div, .come-to-you__intro, .come-to-you__card, .pricing__card, .cta__inner, .section__label, .section__heading, .pricing__sub, .gallery__track');
-  fadeEls.forEach(el => el.classList.add('fade-in'));
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  fadeEls.forEach(el => obs.observe(el));
+// Mobile menu
+const toggle=document.querySelector('.nav__toggle');
+const mobileNav=document.getElementById('mobileNav');
+const mobileClose=document.querySelector('.nav__mobile-close');
+if(toggle)toggle.addEventListener('click',()=>mobileNav.classList.add('nav__mobile--open'));
+if(mobileClose)mobileClose.addEventListener('click',closeMobile);
+function closeMobile(){mobileNav.classList.remove('nav__mobile--open')}
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function(e) {
-      const t = document.querySelector(this.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-    });
-  });
+// Fade-in on scroll
+const fadeEls=document.querySelectorAll('.about__grid>div,.come-to-you__card,.pricing__card,.cta__inner,.section__label,.section__heading,.come-to-you__highlight,.pricing__sub,.proof__columns,.gallery__track');
+fadeEls.forEach(el=>el.classList.add('fade-in'));
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+fadeEls.forEach(el=>obs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
   </script>
 </body>
 </html>
