@@ -14,7 +14,7 @@
   --black:#0a0a0a;--dark:#111110;--dark-gray:#1a1918;--mid-gray:#2a2926;
   --steel:#3a3835;--steel-light:#4a4844;--light-gray:#8a8882;
   --warm-gray:#9a9490;--off-white:#e8e6e3;--white:#f5f4f2;
-  --accent:#E85D04;--accent-hover:#F77F00;--accent-dark:#DC2F02;
+  --accent:#FF6B1A;--accent-hover:#FF8534;--accent-dark:#E85D04;
   --font-heading:'Space Grotesk',sans-serif;--font-body:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -38,7 +38,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 20px;transition:background .3s ease}
-.nav--scrolled{background:rgba(10,10,10,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,93,4,.15)}
+.nav--scrolled{background:rgba(10,10,10,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,107,26,.15)}
 .nav__inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto}
 .nav__logo{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;letter-spacing:.08em;text-transform:uppercase}
 .nav__logo span{display:block;font-size:.6rem;font-weight:500;letter-spacing:.2em;color:var(--accent);margin-top:-2px}
@@ -59,9 +59,9 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 .hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:120px 20px 60px;overflow:hidden;background:var(--black)}
 .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1}
 .hero__bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;user-select:none}
-.hero__bg-text span{font-family:var(--font-heading);font-size:clamp(3rem,12vw,10rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:transparent;-webkit-text-stroke:1px rgba(232,93,4,.06);line-height:.9;white-space:nowrap}
+.hero__bg-text span{font-family:var(--font-heading);font-size:clamp(3rem,12vw,10rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:transparent;-webkit-text-stroke:1px rgba(255,107,26,.06);line-height:.9;white-space:nowrap}
 .hero__content{position:relative;z-index:2;text-align:center;max-width:700px}
-.hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);margin-bottom:32px;padding:8px 16px;border:1px solid rgba(232,93,4,.3)}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);margin-bottom:32px;padding:8px 16px;border:1px solid rgba(255,107,26,.3)}
 .hero__badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 .hero__title{font-family:var(--font-heading);font-size:clamp(3.5rem,14vw,8rem);font-weight:700;line-height:.85;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:24px;color:var(--white)}
@@ -106,8 +106,8 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 .pricing__sub{font-size:.95rem;color:var(--light-gray);margin-bottom:48px}
 .pricing__grid{display:grid;gap:16px}
 .pricing__card{position:relative;background:var(--dark-gray);border:1px solid var(--steel);padding:32px 24px;transition:border-color .3s}
-.pricing__card:hover{border-color:rgba(232,93,4,.4)}
-.pricing__card--featured{border-color:var(--accent);background:linear-gradient(135deg,var(--dark-gray),rgba(232,93,4,.08))}
+.pricing__card:hover{border-color:rgba(255,107,26,.4)}
+.pricing__card--featured{border-color:var(--accent);background:linear-gradient(135deg,var(--dark-gray),rgba(255,107,26,.08))}
 .pricing__card-badge{position:absolute;top:0;right:24px;background:var(--accent);color:#fff;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:6px 12px}
 .pricing__card-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
 .pricing__card-icon{color:var(--accent);font-size:1rem}
@@ -144,7 +144,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 
 /* CTA */
 .cta{padding:100px 0;background:var(--dark);border-top:1px solid var(--mid-gray);position:relative;overflow:hidden}
-.cta::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(232,93,4,.08),transparent 70%);pointer-events:none}
+.cta::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,107,26,.08),transparent 70%);pointer-events:none}
 .cta__inner{text-align:center;max-width:600px;margin:0 auto;position:relative;z-index:2}
 .cta__title{font-family:var(--font-heading);font-size:clamp(2.5rem,10vw,5rem);font-weight:700;line-height:.9;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:20px}
 .cta__title em{font-style:italic;color:var(--accent)}
@@ -374,9 +374,9 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
     <div class="gallery__track" style="padding-left:20px">
       <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#1a1918,#3a3835)"><span class="gallery__card-label">Skin Fade</span></div></div>
       <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#2a2926,#4a4844)"><span class="gallery__card-label">Textured Crop</span></div></div>
-      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#1a1918,rgba(232,93,4,.15))"><span class="gallery__card-label">Buzz Cut</span></div></div>
+      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#1a1918,rgba(255,107,26,.15))"><span class="gallery__card-label">Buzz Cut</span></div></div>
       <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#2a2926,#3a3835)"><span class="gallery__card-label">Long Trim</span></div></div>
-      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#1a1918,rgba(232,93,4,.1))"><span class="gallery__card-label">Beard Shape</span></div></div>
+      <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#1a1918,rgba(255,107,26,.1))"><span class="gallery__card-label">Beard Shape</span></div></div>
       <div class="gallery__card"><div class="gallery__card-bg" style="background:linear-gradient(135deg,#2a2926,#4a4844)"><span class="gallery__card-label">Full Grooming</span></div></div>
     </div>
   </section>
