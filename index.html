@@ -4,10 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ulu Home Cuts — Mobile Barber, Bali</title>
-  <meta name="description" content="No more waiting in line. Ulu Home Cuts brings the barbershop to your door in Bali. Book Rangga for a fresh cut today.">
+  <meta name="description" content="No more waiting in line. Ulu Home Cuts brings the barbershop to your door across Canggu, Uluwatu, Sanur and more. Book Rangga for a fresh cut today.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ulu Home Cuts — Mobile Barber, Bali">
+  <meta property="og:description" content="Skip the queues. Professional haircuts at your villa, hotel, or home across Bali's expat hubs.">
+  <meta property="og:image" content="https://uluhomecuts.com/images/og/hero-preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ulu Home Cuts — Mobile Barber, Bali">
+  <meta property="og:url" content="https://uluhomecuts.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ulu Home Cuts — Mobile Barber, Bali">
+  <meta name="twitter:description" content="Skip the queues. Professional haircuts at your villa, hotel, or home across Bali's expat hubs.">
+  <meta name="twitter:image" content="https://uluhomecuts.com/images/og/hero-preview.jpg">
+  <link rel="icon" href="/images/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/images/icons/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -105,19 +121,48 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 .pricing{padding:100px 0;background:var(--black);border-top:1px solid var(--mid-gray)}
 .pricing__sub{font-size:.95rem;color:var(--light-gray);margin-bottom:48px}
 .pricing__grid{display:grid;gap:16px}
-.pricing__card{position:relative;background:var(--dark-gray);border:1px solid var(--steel);padding:32px 24px;transition:border-color .3s}
+.pricing__card{position:relative;background:var(--dark-gray);border:1px solid var(--steel);padding:32px 24px;transition:border-color .3s;display:flex;flex-direction:column}
 .pricing__card:hover{border-color:rgba(255,107,26,.4)}
 .pricing__card--featured{border-color:var(--accent);background:linear-gradient(135deg,var(--dark-gray),rgba(255,107,26,.08))}
+.pricing__card--group{border-color:rgba(255,107,26,.55);background:linear-gradient(160deg,var(--dark-gray) 0%,rgba(255,107,26,.12) 100%)}
 .pricing__card-badge{position:absolute;top:0;right:24px;background:var(--accent);color:#fff;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:6px 12px}
 .pricing__card-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
 .pricing__card-icon{color:var(--accent);font-size:1rem}
 .pricing__card-title{font-family:var(--font-heading);font-size:1.1rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.pricing__card-note{font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin:-12px 0 20px;font-weight:600}
 .pricing__card-price{display:flex;align-items:baseline;gap:8px;margin-bottom:24px}
 .pricing__card-amount{font-family:var(--font-heading);font-size:2.8rem;font-weight:700;color:var(--white);line-height:1}
 .pricing__card-currency{font-size:.8rem;color:var(--light-gray);text-transform:uppercase;letter-spacing:.1em}
-.pricing__card-list{margin-bottom:28px}
+.pricing__card-list{margin-bottom:28px;flex:1}
 .pricing__card-list li{font-size:.85rem;color:var(--light-gray);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:8px}
 .pricing__card-list li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0}
+
+/* AREAS MAP */
+.areas{padding:100px 0;background:var(--dark);border-top:1px solid var(--mid-gray)}
+.areas__intro{font-size:.95rem;color:var(--light-gray);line-height:1.7;margin-bottom:40px;max-width:640px}
+.areas-map-shell{display:grid;gap:16px;align-items:stretch}
+.areas-map-frame{position:relative;min-height:360px;overflow:hidden;border:1px solid var(--steel);background:var(--dark-gray)}
+.areas-map{position:absolute;inset:0;background:var(--dark-gray);z-index:1}
+.areas-map .leaflet-tile-pane{filter:saturate(.85) brightness(.72) contrast(1.1)}
+.areas-map-panel{background:var(--black);border:1px solid var(--steel);padding:28px 24px;display:flex;flex-direction:column;justify-content:center}
+.areas-map-kicker{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--light-gray);font-family:var(--font-body);margin-bottom:12px}
+.areas-map-title{font-family:var(--font-heading);font-size:clamp(1.6rem,4vw,2rem);font-weight:700;text-transform:uppercase;letter-spacing:-.02em;color:var(--white);margin-bottom:12px;line-height:1.1}
+.areas-map-copy{font-size:.9rem;line-height:1.7;color:var(--light-gray);margin-bottom:24px}
+.areas-map-spots{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.areas-map-chip{appearance:none;border:1px solid var(--steel);background:var(--dark-gray);color:var(--light-gray);border-radius:0;padding:10px 14px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-family:var(--font-heading);font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+.areas-map-chip:hover{border-color:var(--accent);color:var(--off-white)}
+.areas-map-chip[data-active="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.areas-map-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#25D366;color:#0a0a0a;padding:16px 20px;font-family:var(--font-heading);font-weight:700;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;border:none;cursor:pointer;transition:transform .2s,background .2s}
+.areas-map-cta:hover{background:#2fe472;transform:translateY(-1px)}
+.areas-map-cta svg{width:20px;height:20px;flex-shrink:0}
+.ulu-pin{appearance:none;cursor:pointer;background:transparent;border:0;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0}
+.ulu-pin-dot{width:14px;height:14px;background:var(--accent);border:2px solid var(--white);border-radius:50%;box-shadow:0 0 0 6px rgba(255,107,26,.18)}
+.ulu-pin[data-active="true"] .ulu-pin-dot{width:18px;height:18px;box-shadow:0 0 0 10px rgba(255,107,26,.28)}
+.ulu-pin-label{font-family:var(--font-heading);letter-spacing:.12em;text-transform:uppercase;color:var(--white);white-space:nowrap;background:rgba(10,10,10,.82);border:1px solid var(--steel);padding:4px 8px;font-size:10px;font-weight:600}
+.leaflet-div-icon{background:transparent;border:0}
+.leaflet-control-attribution{background:rgba(10,10,10,.72)!important;color:var(--light-gray)!important;font-size:10px!important}
+.leaflet-control-attribution a{color:var(--off-white)!important}
+.leaflet-control-zoom a{background:var(--black)!important;color:var(--off-white)!important;border-color:var(--steel)!important;width:32px!important;height:32px!important;line-height:32px!important;font-size:16px!important}
 
 /* SOCIAL PROOF */
 .proof{padding:100px 0;background:var(--dark);border-top:1px solid var(--mid-gray);overflow:hidden}
@@ -176,7 +221,9 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
   .hero__subtitle{font-size:1.1rem}
   .about__grid{grid-template-columns:1fr 1fr;gap:60px;align-items:start}
   .come-to-you__grid{grid-template-columns:repeat(3,1fr);gap:20px}
-  .pricing__grid{grid-template-columns:repeat(3,1fr);gap:20px}
+  .pricing__grid{grid-template-columns:repeat(2,1fr);gap:20px}
+  .areas-map-shell{grid-template-columns:1.35fr .9fr;gap:16px}
+  .areas-map-frame{min-height:440px}
   .proof__columns{grid-template-columns:repeat(3,1fr);max-height:600px}
   .gallery__card{flex:0 0 320px;height:400px}
   .footer__top{flex-direction:row;align-items:center;justify-content:space-between}
@@ -187,6 +234,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
   .about{padding:140px 0}
   .come-to-you{padding:140px 0}
   .pricing{padding:140px 0}
+  .areas{padding:140px 0}
   .proof{padding:140px 0}
   .gallery{padding:140px 0}
   .cta{padding:140px 0}
@@ -207,6 +255,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
       <a href="#" class="nav__logo">ULU<span>HOME CUTS</span></a>
       <div class="nav__links">
         <a href="#about">About</a>
+        <a href="#areas">Areas</a>
         <a href="#pricing">Pricing</a>
         <a href="#proof">Proof</a>
         <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="nav__book">Book Now</a>
@@ -221,6 +270,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
   <div class="nav__mobile" id="mobileNav">
     <button class="nav__mobile-close" aria-label="Close">&times;</button>
     <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#areas" onclick="closeMobile()">Areas</a>
     <a href="#pricing" onclick="closeMobile()">Pricing</a>
     <a href="#proof" onclick="closeMobile()">Proof</a>
     <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" onclick="closeMobile()">Book Now</a>
@@ -299,31 +349,63 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
     </div>
   </section>
 
+  <!-- SERVICE AREAS MAP -->
+  <section class="areas" id="areas">
+    <div class="section__container">
+      <div class="section__label"><span class="section__label-dot"></span>Service Areas</div>
+      <h2 class="section__heading">WHERE WE<br><em>COME TO YOU</em></h2>
+      <p class="areas__intro">Tap a pin — Canggu, Pererenan, Seseh, Ungasan, Uluwatu, Bingin, Sanur and more. We cover Bali's expat hubs (not Ubud). Book in your area and we'll roll up with the full setup.</p>
+      <div class="areas-map-shell">
+        <div class="areas-map-frame">
+          <div id="areasMap" class="areas-map" role="img" aria-label="Map of Ulu Home Cuts service areas across Bali"></div>
+        </div>
+        <div class="areas-map-panel">
+          <p class="areas-map-kicker" id="areaKicker">West coast hub</p>
+          <h3 class="areas-map-title" id="areaTitle">Canggu</h3>
+          <p class="areas-map-copy" id="areaCopy">Villa compounds, cafes, and the heart of Bali's expat scene. We come to your place — Berawa to Echo Beach.</p>
+          <div class="areas-map-spots" id="areaChips"></div>
+          <a id="areaWhatsApp" class="areas-map-cta" href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+in+Canggu&type=phone_number&app_absent=0" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Book in <span id="areaCtaName">Canggu</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PRICING -->
   <section class="pricing" id="pricing">
     <div class="section__container">
       <div class="section__label"><span class="section__label-dot"></span>Pricing</div>
       <h2 class="section__heading">SIMPLE<br><em>PRICING</em></h2>
-      <p class="pricing__sub">No hidden fees. No surprises. Just quality cuts.</p>
+      <p class="pricing__sub">No hidden fees. No surprises. Just quality cuts — solo or for the boys.</p>
       <div class="pricing__grid">
         <div class="pricing__card">
           <div class="pricing__card-header"><span class="pricing__card-icon">&#9670;</span><h3 class="pricing__card-title">Haircut</h3></div>
-          <div class="pricing__card-price"><span class="pricing__card-amount">250K</span><span class="pricing__card-currency">IDR</span></div>
+          <div class="pricing__card-price"><span class="pricing__card-amount">350K</span><span class="pricing__card-currency">IDR</span></div>
           <ul class="pricing__card-list"><li>Skin Fade</li><li>Long Cut</li><li>Buzz Cut</li><li>All hair styles</li></ul>
           <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--outline btn--full">Book This</a>
         </div>
         <div class="pricing__card pricing__card--featured">
           <div class="pricing__card-badge">Most Popular</div>
           <div class="pricing__card-header"><span class="pricing__card-icon">&#9670;</span><h3 class="pricing__card-title">Haircut + Beard</h3></div>
-          <div class="pricing__card-price"><span class="pricing__card-amount">400K</span><span class="pricing__card-currency">IDR</span></div>
+          <div class="pricing__card-price"><span class="pricing__card-amount">500K</span><span class="pricing__card-currency">IDR</span></div>
           <ul class="pricing__card-list"><li>Any haircut style</li><li>Beard trim & shape</li><li>Full grooming session</li><li>Clean lineup</li></ul>
-          <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--primary btn--full">Book This</a>
+          <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+%2B+beard+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--primary btn--full">Book This</a>
         </div>
         <div class="pricing__card">
           <div class="pricing__card-header"><span class="pricing__card-icon">&#9670;</span><h3 class="pricing__card-title">Beard Only</h3></div>
           <div class="pricing__card-price"><span class="pricing__card-amount">150K</span><span class="pricing__card-currency">IDR</span></div>
           <ul class="pricing__card-list"><li>Beard trim</li><li>Shape & line up</li><li>No haircut</li><li>Quick & precise</li></ul>
-          <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--outline btn--full">Book This</a>
+          <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+beard+trim+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--outline btn--full">Book This</a>
+        </div>
+        <div class="pricing__card pricing__card--group">
+          <div class="pricing__card-badge">Group Deal</div>
+          <div class="pricing__card-header"><span class="pricing__card-icon">&#9670;</span><h3 class="pricing__card-title">For the Boys</h3></div>
+          <p class="pricing__card-note">Get a trim for the boys · 3 people</p>
+          <div class="pricing__card-price"><span class="pricing__card-amount">1M</span><span class="pricing__card-currency">IDR</span></div>
+          <ul class="pricing__card-list"><li>Hair + beard for 3</li><li>One session at your place</li><li>Villa / hotel crew ready</li><li>Better than booking solo</li></ul>
+          <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+the+For+the+Boys+group+package+%283+people%2C+hair+%2B+beard%29&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--primary btn--full">Book the Boys</a>
         </div>
       </div>
     </div>
@@ -402,6 +484,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
         <a href="#" class="footer__logo">ULU<span>HOME CUTS</span></a>
         <div class="footer__links">
           <a href="#about">About</a>
+          <a href="#areas">Areas</a>
           <a href="#pricing">Pricing</a>
           <a href="#proof">Proof</a>
           <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener">WhatsApp</a>
@@ -419,6 +502,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
     <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
 // Nav scroll effect
 const nav=document.querySelector('.nav');
@@ -433,13 +517,106 @@ if(mobileClose)mobileClose.addEventListener('click',closeMobile);
 function closeMobile(){mobileNav.classList.remove('nav__mobile--open')}
 
 // Fade-in on scroll
-const fadeEls=document.querySelectorAll('.about__grid>div,.come-to-you__card,.pricing__card,.cta__inner,.section__label,.section__heading,.come-to-you__highlight,.pricing__sub,.proof__columns,.gallery__track');
+const fadeEls=document.querySelectorAll('.about__grid>div,.come-to-you__card,.pricing__card,.cta__inner,.section__label,.section__heading,.come-to-you__highlight,.pricing__sub,.proof__columns,.gallery__track,.areas__intro,.areas-map-shell');
 fadeEls.forEach(el=>el.classList.add('fade-in'));
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 fadeEls.forEach(el=>obs.observe(el));
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+
+// Service areas map (Melody Surf pattern, Ulu Home Cuts style)
+const AREAS=[
+  {id:'canggu',name:'Canggu',lat:-8.6478,lng:115.1385,tag:'West coast hub',text:"Villa compounds, cafes, and the heart of Bali's expat scene. We come to your place — Berawa to Echo Beach."},
+  {id:'pererenan',name:'Pererenan',lat:-8.6378,lng:115.1305,tag:'North of Canggu',text:'Quieter lanes, rice-field villas, and a strong long-stay crowd. Perfect for a home session before the day starts.'},
+  {id:'seseh',name:'Seseh',lat:-8.6205,lng:115.1048,tag:'Further up the coast',text:'Beach villas and chill energy north of Pererenan. We roll out with the full setup — just need a socket.'},
+  {id:'berawa',name:'Berawa',lat:-8.6595,lng:115.1482,tag:'Canggu strip',text:'Right in the thick of it. Hotels, apartments, and co-working — book ahead and skip the shop queues.'},
+  {id:'seminyak',name:'Seminyak',lat:-8.6908,lng:115.1682,tag:'South of Canggu',text:'Restaurants, villas, and weekend energy. A fresh cut at your place before dinner plans.'},
+  {id:'ungasan',name:'Ungasan',lat:-8.8285,lng:115.1678,tag:'The Bukit',text:'Clifftop villas and quiet roads above the south coast. We come to you across Ungasan and surrounds.'},
+  {id:'bingin',name:'Bingin',lat:-8.8055,lng:115.1132,tag:'Surf coast',text:'Bingin, Padang, Impossibles — villa stays and surf trips. Get the crew trimmed without leaving the hill.'},
+  {id:'uluwatu',name:'Uluwatu',lat:-8.8291,lng:115.0847,tag:'Home turf',text:'Our namesake stretch. Cliffs, villas, and sunsets — book a cut at your door before you hit the waves.'},
+  {id:'jimbaran',name:'Jimbaran',lat:-8.7900,lng:115.1605,tag:'Bay side',text:'Between the airport and the Bukit. Villas and bay views — easy booking for a sharp look on arrival.'},
+  {id:'sanur',name:'Sanur',lat:-8.6905,lng:115.2630,tag:'East coast',text:"East-side calm. Families, long-stays, and beachfront stays — we come across to Sanur too."}
+];
+
+function areaWaUrl(name){
+  const text=encodeURIComponent(`Hey Rangga, I'd love to book a haircut in ${name}`);
+  return `https://api.whatsapp.com/send/?phone=%2B6281336755157&text=${text}&type=phone_number&app_absent=0`;
+}
+
+function makePinIcon(name,active){
+  return L.divIcon({
+    className:'ulu-leaflet-pin',
+    html:`<div class="ulu-pin" data-active="${active}"><span class="ulu-pin-dot"></span><span class="ulu-pin-label">${name}</span></div>`,
+    iconSize:[110,46],
+    iconAnchor:[55,44]
+  });
+}
+
+(function initAreasMap(){
+  const el=document.getElementById('areasMap');
+  if(!el||typeof L==='undefined')return;
+
+  let activeId='canggu';
+  const markers={};
+  const map=L.map(el,{zoomControl:false,scrollWheelZoom:false,attributionControl:true}).setView([-8.72,115.16],11);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
+    attribution:'Tiles &copy; Esri',
+    maxZoom:19
+  }).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+
+  const bounds=L.latLngBounds(AREAS.map(a=>[a.lat,a.lng]));
+  map.fitBounds(bounds,{padding:[48,48],maxZoom:12});
+
+  const chips=document.getElementById('areaChips');
+  AREAS.forEach(area=>{
+    const marker=L.marker([area.lat,area.lng],{
+      icon:makePinIcon(area.name,area.id===activeId),
+      zIndexOffset:area.id===activeId?1000:10
+    }).addTo(map);
+    marker.on('click',()=>setActive(area.id));
+    markers[area.id]=marker;
+
+    const chip=document.createElement('button');
+    chip.type='button';
+    chip.className='areas-map-chip';
+    chip.dataset.active=area.id===activeId?'true':'false';
+    chip.textContent=area.name;
+    chip.addEventListener('click',()=>setActive(area.id));
+    chips.appendChild(chip);
+  });
+
+  function setActive(id){
+    activeId=id;
+    const area=AREAS.find(a=>a.id===id)||AREAS[0];
+    document.getElementById('areaKicker').textContent=area.tag;
+    document.getElementById('areaTitle').textContent=area.name;
+    document.getElementById('areaCopy').textContent=area.text;
+    document.getElementById('areaCtaName').textContent=area.name;
+    document.getElementById('areaWhatsApp').href=areaWaUrl(area.name);
+    chips.querySelectorAll('.areas-map-chip').forEach((chip,i)=>{
+      chip.dataset.active=AREAS[i].id===id?'true':'false';
+    });
+    map.flyTo([area.lat,area.lng],13,{duration:.7});
+    AREAS.forEach(a=>{
+      const m=markers[a.id];
+      if(!m)return;
+      m.setIcon(makePinIcon(a.name,a.id===id));
+      m.setZIndexOffset(a.id===id?1000:10);
+    });
+  }
+
+  requestAnimationFrame(()=>map.invalidateSize());
+  // Invalidate when section scrolls into view (fixes zero-height init)
+  const frame=document.querySelector('.areas-map-frame');
+  if(frame){
+    const mapObs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){map.invalidateSize();mapObs.disconnect()}});
+    },{threshold:.2});
+    mapObs.observe(frame);
+  }
+})();
   </script>
 </body>
 </html>
