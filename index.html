@@ -31,17 +31,38 @@
   --steel:#3a3835;--steel-light:#4a4844;--light-gray:#8a8882;
   --warm-gray:#9a9490;--off-white:#e8e6e3;--white:#f5f4f2;
   --accent:#FF6B1A;--accent-hover:#FF8534;--accent-dark:#E85D04;
+  /* Uluwatu sunset + ocean */
+  --sunset-1:#FFB347;--sunset-2:#FF6B1A;--sunset-3:#D6336C;
+  --ocean:#1C6E72;--ocean-light:#2E9B8F;--sand:#C9B79C;
+  --glass:rgba(255,255,255,.04);--glass-line:rgba(255,255,255,.09);
+  --gutter:20px;
   --font-heading:'Space Grotesk',sans-serif;--font-body:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:var(--font-body);background:var(--black);color:var(--off-white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(900px 500px at 85% -5%,rgba(255,107,26,.10),transparent 70%),
+  radial-gradient(700px 480px at 5% 30%,rgba(28,110,114,.10),transparent 70%),
+  radial-gradient(800px 520px at 60% 102%,rgba(214,51,108,.07),transparent 70%)}
+body>*{position:relative;z-index:1}
 a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;display:block}
 
-.section__container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+/* BALI ACCENTS */
+.sunset-text{background:linear-gradient(100deg,var(--sunset-1),var(--sunset-2) 55%,var(--sunset-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;font-style:italic}
+.wave-divider{display:block;width:100%;height:48px;color:var(--accent);opacity:.3}
+.wave-divider svg{display:block;width:100%;height:100%}
+.palm-decor{position:absolute;pointer-events:none;user-select:none;color:rgba(255,107,26,.13);z-index:1}
+.palm-decor svg{display:block;width:100%;height:auto}
+.palm-decor--left{left:-40px;bottom:-10px;width:200px;transform:scaleX(-1)}
+.palm-decor--right{right:-40px;bottom:-10px;width:230px}
+.cliff-decor{position:absolute;left:0;right:0;bottom:0;height:120px;pointer-events:none;color:rgba(10,10,10,.9);z-index:1}
+.cliff-decor svg{display:block;width:100%;height:100%}
+
+.section__container{width:100%;max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
 .section__label{display:flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--light-gray);margin-bottom:40px}
 .section__label-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block}
 .section__heading{font-family:var(--font-heading);font-size:clamp(2.5rem,10vw,5rem);font-weight:700;line-height:.9;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:16px}
-.section__heading em{font-style:italic;color:var(--accent)}
+.section__heading em,.about__title em,.cta__title em{font-style:italic;background:linear-gradient(100deg,var(--sunset-1),var(--sunset-2) 55%,var(--sunset-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-heading);font-weight:600;font-size:.875rem;letter-spacing:.05em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s ease;border-radius:0}
 .btn--primary{background:var(--accent);color:#fff;padding:16px 32px}
@@ -58,11 +79,11 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 .nav__inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto}
 .nav__logo{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;letter-spacing:.08em;text-transform:uppercase}
 .nav__logo span{display:block;font-size:.6rem;font-weight:500;letter-spacing:.2em;color:var(--accent);margin-top:-2px}
-.nav__links{display:none;align-items:center;gap:28px}
-.nav__links a{font-size:.8rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--light-gray);transition:color .3s}
+.nav__links{display:none;align-items:center;gap:20px}
+.nav__links a{font-size:.78rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--light-gray);transition:color .3s}
 .nav__links a:hover{color:var(--accent)}
-.nav__book{background:var(--accent);color:#fff;padding:10px 20px;font-family:var(--font-heading);font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s}
-.nav__book:hover{background:var(--accent-hover)}
+a.nav__book{background:var(--accent);color:#fff;padding:10px 20px;font-family:var(--font-heading);font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s}
+a.nav__book:hover{background:var(--accent-hover);color:#fff}
 .nav__toggle{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
 .nav__toggle span{display:block;width:22px;height:2px;background:var(--off-white);transition:all .3s}
 .nav__mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
@@ -73,17 +94,28 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 
 /* HERO */
 .hero{position:relative;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:120px 20px 60px;overflow:hidden;background:var(--black)}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1}
-.hero__bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;user-select:none}
-.hero__bg-text span{font-family:var(--font-heading);font-size:clamp(3rem,12vw,10rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:transparent;-webkit-text-stroke:1px rgba(255,107,26,.06);line-height:.9;white-space:nowrap}
-.hero__content{position:relative;z-index:2;text-align:center;max-width:700px}
-.hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);margin-bottom:32px;padding:8px 16px;border:1px solid rgba(255,107,26,.3)}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:3}
+/* Hero media: villa session footage behind the headline */
+.hero__media{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero__media img,.hero__media video{width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(1.05) brightness(.62)}
+.hero__media img{animation:heroDrift 24s ease-in-out infinite alternate}
+.hero__media::after{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(10,10,10,.82) 0%,rgba(10,10,10,.6) 35%,rgba(10,10,10,.78) 70%,var(--black) 100%),
+  radial-gradient(70% 55% at 50% 42%,rgba(255,107,26,.16),transparent 72%)}
+@keyframes heroDrift{from{transform:scale(1.04) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(-1.5%,-1.5%,0)}}
+/* Uluwatu sunset band */
+.hero__sun{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);width:min(560px,90vw);aspect-ratio:1;border-radius:50%;z-index:1;pointer-events:none;background:radial-gradient(circle,rgba(255,179,71,.26) 0%,rgba(255,107,26,.14) 42%,transparent 66%);filter:blur(6px);animation:sunGlow 7s ease-in-out infinite}
+@keyframes sunGlow{0%,100%{opacity:.75;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.05)}}
+.hero__bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;user-select:none;z-index:2}
+.hero__bg-text span{font-family:var(--font-heading);font-size:clamp(3rem,12vw,10rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:transparent;-webkit-text-stroke:1px rgba(255,107,26,.08);line-height:.9;white-space:nowrap}
+.hero__content{position:relative;z-index:4;text-align:center;max-width:700px}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);margin-bottom:32px;padding:8px 16px;border:1px solid rgba(255,107,26,.3);background:rgba(10,10,10,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .hero__badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
-.hero__title{font-family:var(--font-heading);font-size:clamp(3.5rem,14vw,8rem);font-weight:700;line-height:.85;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:24px;color:var(--white)}
-.hero__title span{color:var(--accent)}
-.hero__subtitle{font-size:1rem;color:var(--light-gray);line-height:1.7;margin-bottom:40px;max-width:440px;margin-left:auto;margin-right:auto}
-.hero__scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2}
+.hero__title{font-family:var(--font-heading);font-size:clamp(3.5rem,14vw,8rem);font-weight:700;line-height:.85;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:24px;color:var(--white);text-shadow:0 6px 40px rgba(10,10,10,.75)}
+.hero__title span{background:linear-gradient(100deg,var(--sunset-1),var(--sunset-2) 55%,var(--sunset-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero__subtitle{font-size:1rem;color:var(--off-white);opacity:.82;line-height:1.7;margin-bottom:40px;max-width:440px;margin-left:auto;margin-right:auto;text-shadow:0 2px 16px rgba(10,10,10,.8)}
+.hero__scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:4}
 .hero__scroll span{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s ease-in-out infinite}
 .hero__scroll p{font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;color:var(--light-gray)}
 @keyframes scrollPulse{0%,100%{opacity:.3}50%{opacity:1}}
@@ -97,11 +129,12 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 /* ABOUT */
 .about{padding:100px 0;background:var(--black);border-top:1px solid var(--mid-gray)}
 .about__grid{display:grid;gap:48px}
-.about__title{font-family:var(--font-heading);font-size:clamp(2.5rem,10vw,5rem);font-weight:700;line-height:.9;text-transform:uppercase;letter-spacing:-.02em}
-.about__title em{font-style:italic;color:var(--accent)}
+.about__title{font-family:var(--font-heading);font-size:clamp(2.5rem,10vw,5rem);font-weight:700;line-height:.9;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:28px}
 .about__photo{position:relative;overflow:hidden;border:1px solid var(--steel);aspect-ratio:3/4;max-width:420px;background:var(--dark-gray)}
 .about__photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;filter:saturate(.92) contrast(1.05)}
-.about__photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,10,10,.55));pointer-events:none}
+.about__photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,10,10,.6));pointer-events:none}
+.about__photo::before{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;z-index:2;background:linear-gradient(90deg,var(--sunset-1),var(--sunset-2) 50%,var(--sunset-3))}
+.about__photo-tag{position:absolute;left:16px;bottom:18px;z-index:3;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-heading);font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:rgba(10,10,10,.55);border:1px solid var(--glass-line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:7px 11px}
 .about__text{font-size:.95rem;color:var(--light-gray);line-height:1.8;margin-bottom:20px}
 .about__text strong{color:var(--accent)}
 .about__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;padding-top:40px;border-top:1px solid var(--steel)}
@@ -114,8 +147,10 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 .come-to-you__highlight{font-family:var(--font-heading);font-size:clamp(1.3rem,4vw,2rem);font-weight:700;color:var(--white);line-height:1.3;margin-bottom:48px;max-width:700px;text-transform:uppercase;letter-spacing:-.01em}
 .come-to-you__highlight span{color:var(--accent);display:inline}
 .come-to-you__grid{display:grid;gap:16px}
-.come-to-you__card{background:var(--dark-gray);border:1px solid var(--steel);padding:32px 24px;transition:border-color .3s}
-.come-to-you__card:hover{border-color:var(--accent)}
+.come-to-you__card{position:relative;background:linear-gradient(165deg,var(--dark-gray),rgba(28,110,114,.08));border:1px solid var(--steel);padding:32px 24px;transition:border-color .3s,transform .3s}
+.come-to-you__card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.come-to-you__card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--sunset-1),var(--sunset-3));transition:width .4s ease}
+.come-to-you__card:hover::before{width:100%}
 .come-to-you__card-icon{font-size:1.5rem;margin-bottom:16px;display:block;color:var(--accent)}
 .come-to-you__card-title{font-family:var(--font-heading);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;color:var(--white)}
 .come-to-you__card-text{font-size:.85rem;color:var(--light-gray);line-height:1.7}
@@ -124,9 +159,10 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 .pricing{padding:100px 0;background:var(--black);border-top:1px solid var(--mid-gray)}
 .pricing__sub{font-size:.95rem;color:var(--light-gray);margin-bottom:48px}
 .pricing__grid{display:grid;gap:16px}
-.pricing__card{position:relative;background:var(--dark-gray);border:1px solid var(--steel);padding:32px 24px;transition:border-color .3s;display:flex;flex-direction:column}
-.pricing__card:hover{border-color:rgba(255,107,26,.4)}
-.pricing__card--featured{border-color:var(--accent);background:linear-gradient(135deg,var(--dark-gray),rgba(255,107,26,.08))}
+.pricing__card{position:relative;background:linear-gradient(170deg,var(--dark-gray),rgba(28,110,114,.07));border:1px solid var(--steel);padding:32px 24px;transition:border-color .3s,transform .3s;display:flex;flex-direction:column}
+.pricing__card:hover{border-color:rgba(255,107,26,.45);transform:translateY(-4px)}
+.pricing__card--featured{border-color:var(--accent);background:linear-gradient(135deg,var(--dark-gray),rgba(255,107,26,.1))}
+.pricing__card--featured .pricing__card-amount,.pricing__card--group .pricing__card-amount{background:linear-gradient(100deg,var(--sunset-1),var(--sunset-2) 60%,var(--sunset-3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 .pricing__card--group{border-color:rgba(255,107,26,.55);background:linear-gradient(160deg,var(--dark-gray) 0%,rgba(255,107,26,.12) 100%)}
 .pricing__card-badge{position:absolute;top:0;right:24px;background:var(--accent);color:#fff;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:6px 12px}
 .pricing__card-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
@@ -167,31 +203,97 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 .leaflet-control-attribution a{color:var(--off-white)!important}
 .leaflet-control-zoom a{background:var(--black)!important;color:var(--off-white)!important;border-color:var(--steel)!important;width:32px!important;height:32px!important;line-height:32px!important;font-size:16px!important}
 
-/* GALLERY */
-.gallery{padding:100px 0;background:var(--black);border-top:1px solid var(--mid-gray)}
+/* CUTS GALLERY — one card per haircut type */
+.gallery{position:relative;padding:100px 0;background:var(--black);border-top:1px solid var(--mid-gray);overflow:hidden}
 .gallery__intro{font-size:.95rem;color:var(--light-gray);margin-bottom:40px;max-width:560px}
-.gallery__track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px}
+/* Track bleeds to the viewport edge but its first card lines up with the headline */
+.gallery__track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px;padding-inline:max(var(--gutter),calc((100% - 1200px)/2 + var(--gutter)));scroll-padding-inline-start:max(var(--gutter),calc((100% - 1200px)/2 + var(--gutter)))}
 .gallery__track::-webkit-scrollbar{display:none}
-.gallery__card{flex:0 0 280px;height:360px;scroll-snap-align:start;position:relative;overflow:hidden;border:1px solid var(--steel);background:var(--dark-gray)}
-.gallery__card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
-.gallery__card:hover img{transform:scale(1.04)}
-.gallery__card-bg{width:100%;height:100%;display:flex;align-items:flex-end;padding:20px}
-.gallery__card-label{position:absolute;left:16px;bottom:16px;font-family:var(--font-heading);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#fff;background:rgba(10,10,10,.72);padding:8px 14px;backdrop-filter:blur(4px)}
+.gallery__card{flex:0 0 clamp(240px,76vw,300px);scroll-snap-align:start;position:relative;display:block;overflow:hidden;border:1px solid var(--steel);background:var(--dark-gray);aspect-ratio:3/4;transition:border-color .35s ease,transform .35s ease}
+.gallery__card:hover,.gallery__card:focus-visible{border-color:var(--accent);transform:translateY(-4px)}
+.gallery__card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.3,1);filter:saturate(.92) contrast(1.06)}
+.gallery__card:hover img{transform:scale(1.07)}
+.gallery__card::after{content:'';position:absolute;inset:0;background:linear-gradient(195deg,rgba(10,10,10,.1) 0%,transparent 35%,rgba(10,10,10,.5) 68%,rgba(10,10,10,.95) 100%);pointer-events:none}
+.gallery__card-top{position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:6px;font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--white);background:rgba(10,10,10,.55);border:1px solid var(--glass-line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:5px 9px}
+.gallery__card-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:18px 16px}
+.gallery__card-label{display:block;font-family:var(--font-heading);font-size:1.15rem;font-weight:700;text-transform:uppercase;letter-spacing:.02em;color:#fff;line-height:1.1}
+.gallery__card-desc{font-size:.76rem;color:var(--warm-gray);margin-top:4px;line-height:1.5}
+.gallery__card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12)}
+.gallery__card-price{font-family:var(--font-heading);font-size:.8rem;font-weight:700;letter-spacing:.06em;color:var(--sunset-1)}
+.gallery__card-book{display:inline-flex;align-items:center;gap:6px;font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--white);opacity:.75;transition:opacity .3s,gap .3s}
+.gallery__card:hover .gallery__card-book{opacity:1;gap:10px;color:var(--accent-hover)}
+.gallery__hint{display:flex;align-items:center;gap:8px;margin-top:20px;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--light-gray)}
 
-/* VIDEOS */
-.videos{padding:100px 0;background:var(--dark);border-top:1px solid var(--mid-gray)}
-.videos__intro{font-size:.95rem;color:var(--light-gray);margin-bottom:40px;max-width:560px}
-.videos__grid{display:grid;gap:16px}
-.videos__item{position:relative;border:1px solid var(--steel);background:var(--dark-gray);overflow:hidden;aspect-ratio:9/16;max-height:560px}
-.videos__item video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
-.videos__item-label{position:absolute;left:12px;bottom:12px;z-index:2;font-family:var(--font-heading);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(10,10,10,.75);padding:6px 10px;pointer-events:none}
+/* VIDEO REEL — featured stage + session rail */
+.reel{position:relative;padding:100px 0;background:var(--dark);border-top:1px solid var(--mid-gray);overflow:hidden}
+.reel__intro{font-size:.95rem;color:var(--light-gray);margin-bottom:40px;max-width:560px}
+.reel__shell{display:grid;gap:20px}
+.reel__stage{position:relative;overflow:hidden;border:1px solid var(--steel);background:#000;aspect-ratio:9/16;max-height:72vh;margin:0 auto;width:100%;max-width:420px}
+.reel__stage video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
+.reel__stage::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,10,.5) 0%,transparent 22%,transparent 58%,rgba(10,10,10,.85) 100%)}
+.reel__meta{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:14px}
+.reel__meta-type{font-family:var(--font-heading);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(10,10,10,.55);border:1px solid var(--glass-line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:7px 11px}
+.reel__meta-live{display:inline-flex;align-items:center;gap:6px;font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--sunset-1);background:rgba(10,10,10,.55);border:1px solid rgba(255,107,26,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:7px 10px;white-space:nowrap}
+.reel__meta-live::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
+.reel__caption{position:absolute;left:14px;right:14px;bottom:62px;z-index:3}
+.reel__caption-title{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;color:#fff;line-height:1.05}
+.reel__caption-place{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--off-white);opacity:.78;margin-top:4px}
+.reel__controls{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;align-items:center;gap:12px;padding:12px 14px 14px}
+.reel__btn{appearance:none;flex-shrink:0;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,.55);border:1px solid var(--glass-line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;transition:background .25s,border-color .25s,color .25s}
+.reel__btn:hover{background:var(--accent);border-color:var(--accent)}
+.reel__btn svg{width:15px;height:15px;display:block;fill:currentColor}
+.reel__track{flex:1;height:3px;background:rgba(255,255,255,.22);cursor:pointer;position:relative}
+.reel__track-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sunset-1),var(--sunset-2));transition:width .12s linear}
+.reel__time{flex-shrink:0;font-family:var(--font-heading);font-size:.66rem;font-weight:600;letter-spacing:.08em;color:var(--off-white);opacity:.85;font-variant-numeric:tabular-nums}
+.reel__nav{appearance:none;position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,.5);border:1px solid var(--glass-line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#fff;cursor:pointer;opacity:0;transition:opacity .3s,background .25s}
+.reel__stage:hover .reel__nav,.reel__nav:focus-visible{opacity:1}
+.reel__nav:hover{background:var(--accent)}
+.reel__nav svg{width:16px;height:16px;fill:currentColor}
+.reel__nav--prev{left:12px}
+.reel__nav--next{right:12px}
+.reel__side{display:flex;flex-direction:column;gap:16px;min-width:0}
+.reel__side-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.reel__side-title{font-family:var(--font-heading);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--light-gray)}
+.reel__side-count{font-family:var(--font-heading);font-size:.72rem;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.reel__rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+.reel__rail::-webkit-scrollbar{display:none}
+.reel__thumb{appearance:none;flex:0 0 96px;scroll-snap-align:start;position:relative;padding:0;overflow:hidden;border:1px solid var(--steel);background:var(--dark-gray);aspect-ratio:9/16;cursor:pointer;transition:border-color .25s,transform .25s}
+.reel__thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8) brightness(.72);transition:filter .3s}
+.reel__thumb:hover img{filter:saturate(1) brightness(.95)}
+.reel__thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,10,10,.9));pointer-events:none}
+.reel__thumb[data-active="true"]{border-color:var(--accent);transform:translateY(-3px)}
+.reel__thumb[data-active="true"] img{filter:saturate(1) brightness(1)}
+.reel__thumb[data-active="true"]::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;z-index:3;background:linear-gradient(90deg,var(--sunset-1),var(--sunset-3))}
+.reel__thumb-label{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:6px 6px 7px;font-family:var(--font-heading);font-size:.52rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;line-height:1.2;text-align:left}
+.reel__thumb-dur{position:absolute;top:5px;right:5px;z-index:2;font-size:.52rem;font-weight:600;letter-spacing:.04em;color:#fff;background:rgba(10,10,10,.7);padding:2px 5px;font-variant-numeric:tabular-nums}
+.reel__cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#25D366;color:#0a0a0a;padding:16px 20px;font-family:var(--font-heading);font-weight:700;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;transition:transform .2s,background .2s}
+.reel__cta:hover{background:#2fe472;transform:translateY(-1px)}
+.reel__cta svg{width:19px;height:19px;flex-shrink:0;fill:currentColor}
+
+/* REVIEWS — real WhatsApp messages */
+.reviews{position:relative;padding:100px 0;background:var(--black);border-top:1px solid var(--mid-gray);overflow:hidden}
+.reviews__intro{font-size:.95rem;color:var(--light-gray);margin-bottom:40px;max-width:560px}
+.reviews__grid{display:grid;gap:20px}
+.reviews__card{display:flex;flex-direction:column;background:linear-gradient(165deg,var(--dark-gray),rgba(28,110,114,.07));border:1px solid var(--steel);padding:28px 24px;transition:border-color .3s,transform .3s}
+.reviews__card:hover{border-color:rgba(255,107,26,.45);transform:translateY(-3px)}
+.reviews__stars{display:flex;gap:3px;color:var(--sunset-1);font-size:.8rem;letter-spacing:.1em;margin-bottom:16px}
+.reviews__quote{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;line-height:1.4;color:var(--white);margin-bottom:16px}
+.reviews__quote::before{content:'\201C'}
+.reviews__quote::after{content:'\201D'}
+.reviews__who{display:flex;align-items:center;gap:8px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--light-gray);margin-bottom:20px}
+.reviews__who svg{width:13px;height:13px;flex-shrink:0;fill:#25D366}
+.reviews__proof{margin-top:auto;border:1px solid var(--mid-gray);background:var(--black);overflow:hidden}
+.reviews__proof img{width:100%;height:auto;display:block;opacity:.92}
+.reviews__proof figcaption{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--light-gray);padding:8px 10px;border-top:1px solid var(--mid-gray)}
 
 /* CTA */
-.cta{padding:100px 0;background:var(--dark);border-top:1px solid var(--mid-gray);position:relative;overflow:hidden}
-.cta::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,107,26,.08),transparent 70%);pointer-events:none}
-.cta__inner{text-align:center;max-width:600px;margin:0 auto;position:relative;z-index:2}
+.cta{padding:100px 0 110px;background:var(--dark);border-top:1px solid var(--mid-gray);position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;left:50%;bottom:-30%;transform:translateX(-50%);width:min(760px,130vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,179,71,.16) 0%,rgba(255,107,26,.1) 40%,rgba(214,51,108,.05) 60%,transparent 72%);pointer-events:none}
+.cta__inner{text-align:center;max-width:600px;margin:0 auto;position:relative;z-index:3}
+.cta__wave{position:absolute;top:26px;left:0;right:0;z-index:1;color:rgba(255,107,26,.28);pointer-events:none}
+.cta__wave svg{display:block;width:100%;height:56px;overflow:visible}
+.cta__wave svg path:nth-child(2){opacity:.45}
 .cta__title{font-family:var(--font-heading);font-size:clamp(2.5rem,10vw,5rem);font-weight:700;line-height:.9;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:20px}
-.cta__title em{font-style:italic;color:var(--accent)}
 .cta__text{font-size:1rem;color:var(--light-gray);line-height:1.7;margin-bottom:36px}
 
 /* FOOTER */
@@ -212,7 +314,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 
 /* RESPONSIVE */
 @media(min-width:768px){
-  .section__container{padding:0 40px}
+  :root{--gutter:40px}
   .nav{padding:20px 40px}
   .nav__links{display:flex}
   .nav__toggle{display:none}
@@ -223,21 +325,28 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
   .pricing__grid{grid-template-columns:repeat(2,1fr);gap:20px}
   .areas-map-shell{grid-template-columns:1.35fr .9fr;gap:16px}
   .areas-map-frame{min-height:440px}
-  .gallery__card{flex:0 0 320px;height:400px}
-  .videos__grid{grid-template-columns:repeat(3,1fr);gap:20px}
-  .videos__item{max-height:none;aspect-ratio:9/16}
+  .gallery__card{flex:0 0 320px}
+  .reel__shell{grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:28px;align-items:start}
+  .reel__stage{margin:0;max-height:none}
+  .reel__rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;overflow:visible}
+  .reel__thumb{flex:none;width:100%}
+  .reel__thumb-label{font-size:.56rem;padding:8px}
+  .reviews__grid{grid-template-columns:repeat(2,1fr)}
   .footer__top{flex-direction:row;align-items:center;justify-content:space-between}
   .footer__bottom{flex-direction:row;justify-content:space-between}
 }
 @media(min-width:1024px){
-  .section__container{padding:0 60px}
+  :root{--gutter:60px}
   .about{padding:140px 0}
   .come-to-you{padding:140px 0}
   .pricing{padding:140px 0}
   .areas{padding:140px 0}
   .gallery{padding:140px 0}
-  .videos{padding:140px 0}
-  .cta{padding:140px 0}
+  .reel{padding:140px 0}
+  .reviews{padding:140px 0}
+  .cta{padding:140px 0 150px}
+  .reel__shell{grid-template-columns:minmax(0,340px) minmax(0,500px);justify-content:center;align-items:start;gap:36px}
+  .reel__side{gap:20px}
   .about__grid{gap:100px}
   .about__stat-number{font-size:2.2rem}
 }
@@ -245,6 +354,12 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 /* ANIMATIONS */
 .fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
 .fade-in.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .fade-in{opacity:1;transform:none;transition:none}
+  .marquee__track,.hero__media img,.hero__sun,.hero__badge-dot,.hero__scroll span{animation:none}
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   </style>
 </head>
 <body>
@@ -258,7 +373,8 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
         <a href="#areas">Areas</a>
         <a href="#pricing">Pricing</a>
         <a href="#cuts">Cuts</a>
-        <a href="#videos">Videos</a>
+        <a href="#videos">Sessions</a>
+        <a href="#reviews">Reviews</a>
         <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="nav__book">Book Now</a>
       </div>
       <button class="nav__toggle" aria-label="Menu">
@@ -274,19 +390,24 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
     <a href="#areas" onclick="closeMobile()">Areas</a>
     <a href="#pricing" onclick="closeMobile()">Pricing</a>
     <a href="#cuts" onclick="closeMobile()">Cuts</a>
-    <a href="#videos" onclick="closeMobile()">Videos</a>
+    <a href="#videos" onclick="closeMobile()">Sessions</a>
+    <a href="#reviews" onclick="closeMobile()">Reviews</a>
     <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" onclick="closeMobile()">Book Now</a>
   </div>
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero__media" id="heroMedia" aria-hidden="true">
+      <img src="/images/videos/textured-crop-poster.jpg" alt="" width="540" height="960" fetchpriority="high">
+    </div>
+    <div class="hero__sun" aria-hidden="true"></div>
     <div class="hero__bg-text" aria-hidden="true">
       <span>ULU HOME CUTS</span><span>ULU HOME CUTS</span><span>ULU HOME CUTS</span>
     </div>
     <div class="hero__content">
       <div class="hero__badge">
         <span class="hero__badge-dot"></span>
-        Mobile Barber — Bali
+        Uluwatu &middot; Canggu &middot; All Bali
       </div>
       <h1 class="hero__title">WE COME<br><span>TO YOU</span></h1>
       <p class="hero__subtitle">Skip the queues. Book in advance and get a fresh cut at your door — home, villa, or hotel. Anywhere in Bali.</p>
@@ -296,12 +417,18 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
       </a>
     </div>
     <div class="hero__scroll"><span></span><p>Scroll</p></div>
+    <div class="palm-decor palm-decor--left" aria-hidden="true">
+      <svg viewBox="0 0 200 220" fill="currentColor"><path d="M98 220c2-54 4-96 10-132l6 1c-6 36-8 78-10 131zM110 82C96 60 70 46 40 44c26-12 58 0 74 26zM112 80C108 54 88 30 60 18c28-2 54 22 58 60zM114 82c12-24 38-40 68-40-22-18-56-6-70 38zM113 84c22-14 52-12 76 6-10-26-48-32-78-10zM112 86c-26-6-54 4-70 28 30-8 50-14 72-24z"/></svg>
+    </div>
+    <div class="palm-decor palm-decor--right" aria-hidden="true">
+      <svg viewBox="0 0 200 220" fill="currentColor"><path d="M98 220c2-54 4-96 10-132l6 1c-6 36-8 78-10 131zM110 82C96 60 70 46 40 44c26-12 58 0 74 26zM112 80C108 54 88 30 60 18c28-2 54 22 58 60zM114 82c12-24 38-40 68-40-22-18-56-6-70 38zM113 84c22-14 52-12 76 6-10-26-48-32-78-10zM112 86c-26-6-54 4-70 28 30-8 50-14 72-24z"/></svg>
+    </div>
   </section>
 
   <!-- MARQUEE -->
   <div class="marquee">
     <div class="marquee__track">
-      <span>WE COME TO YOU</span><span>&#9670;</span><span>FRESH CUTS</span><span>&#9670;</span><span>BALI</span><span>&#9670;</span><span>BOOK AHEAD</span><span>&#9670;</span><span>SKIP THE QUEUES</span><span>&#9670;</span><span>WE COME TO YOU</span><span>&#9670;</span><span>FRESH CUTS</span><span>&#9670;</span><span>BALI</span><span>&#9670;</span><span>BOOK AHEAD</span><span>&#9670;</span><span>SKIP THE QUEUES</span><span>&#9670;</span>
+      <span>WE COME TO YOU</span><span>&#9670;</span><span>ULUWATU</span><span>&#9670;</span><span>FRESH CUTS</span><span>&#9670;</span><span>CANGGU</span><span>&#9670;</span><span>BOOK AHEAD</span><span>&#9670;</span><span>THE BUKIT</span><span>&#9670;</span><span>SKIP THE QUEUES</span><span>&#9670;</span><span>WE COME TO YOU</span><span>&#9670;</span><span>ULUWATU</span><span>&#9670;</span><span>FRESH CUTS</span><span>&#9670;</span><span>CANGGU</span><span>&#9670;</span><span>BOOK AHEAD</span><span>&#9670;</span><span>THE BUKIT</span><span>&#9670;</span><span>SKIP THE QUEUES</span><span>&#9670;</span>
     </div>
   </div>
 
@@ -312,6 +439,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
       <div class="about__grid">
         <div class="about__photo">
           <img src="/images/rangga/rangga.jpg" alt="Rangga — mobile barber at Ulu Home Cuts" width="1400" height="2100" loading="eager">
+          <span class="about__photo-tag"><span class="section__label-dot"></span>Your barber</span>
         </div>
         <div>
           <h2 class="about__title">MEET<br><em>RANGGA</em></h2>
@@ -371,7 +499,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
           <div class="areas-map-spots" id="areaChips"></div>
           <a id="areaWhatsApp" class="areas-map-cta" href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+in+Canggu&type=phone_number&app_absent=0" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Book in <span id="areaCtaName">Canggu</span>
+            <span id="areaCtaName">Book in Canggu</span>
           </a>
         </div>
       </div>
@@ -420,28 +548,114 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
   <section class="gallery" id="cuts">
     <div class="section__container">
       <div class="section__label"><span class="section__label-dot"></span>The Cuts</div>
-      <h2 class="section__heading">REAL CUTS<br><em>REAL PLACES</em></h2>
-      <p class="gallery__intro">Fresh fades, beard work, and villa sessions across Bali — straight from the chair.</p>
+      <h2 class="section__heading">PICK YOUR<br><em>CUT</em></h2>
+      <p class="gallery__intro">Real cuts from real sessions — villas in Pererenan, clifftop places on the Bukit, apartments in Berawa. Find the look you want and book it straight through WhatsApp.</p>
     </div>
-    <div class="gallery__track" id="cutsTrack" style="padding-left:20px"></div>
+    <div class="gallery__track" id="cutsTrack"></div>
+    <div class="section__container">
+      <p class="gallery__hint"><span class="section__label-dot"></span>Swipe for more styles</p>
+    </div>
   </section>
 
-  <!-- VIDEOS -->
-  <section class="videos" id="videos">
+  <!-- VIDEO REEL -->
+  <section class="reel" id="videos">
     <div class="section__container">
-      <div class="section__label"><span class="section__label-dot"></span>Videos</div>
-      <h2 class="section__heading">IN THE<br><em>CHAIR</em></h2>
-      <p class="videos__intro">Watch the cut happen — mobile setup, real sessions, no shop queues.</p>
-      <div class="videos__grid" id="videosGrid"></div>
+      <div class="section__label"><span class="section__label-dot"></span>In the Chair</div>
+      <h2 class="section__heading">THE<br><em>SESSIONS</em></h2>
+      <p class="reel__intro">No studio, no queue — just the chair wherever you are. Tap through real sessions shot on location around Bali.</p>
+      <div class="reel__shell">
+        <div class="reel__stage" id="reelStage">
+          <video id="reelVideo" playsinline muted loop preload="metadata" poster="/images/videos/textured-crop-poster.jpg"></video>
+          <div class="reel__meta">
+            <span class="reel__meta-type" id="reelType">Textured Crop</span>
+            <span class="reel__meta-live">On location</span>
+          </div>
+          <div class="reel__caption">
+            <p class="reel__caption-title" id="reelTitle">Textured Crop</p>
+            <p class="reel__caption-place"><span class="section__label-dot"></span><span id="reelPlace">Villa courtyard, Pererenan</span></p>
+          </div>
+          <div class="reel__controls">
+            <button class="reel__btn" id="reelPlay" type="button" aria-label="Pause video">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+            </button>
+            <div class="reel__track" id="reelTrack" role="presentation"><span class="reel__track-fill" id="reelFill"></span></div>
+            <span class="reel__time" id="reelTime">0:00</span>
+            <button class="reel__btn" id="reelMute" type="button" aria-label="Unmute video">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h3l4-4v14l-4-4H4zM16.5 8.5l-1.4 1.4 2.1 2.1-2.1 2.1 1.4 1.4 2.1-2.1 2.1 2.1 1.4-1.4-2.1-2.1 2.1-2.1-1.4-1.4-2.1 2.1z"/></svg>
+            </button>
+          </div>
+          <button class="reel__nav reel__nav--prev" id="reelPrev" type="button" aria-label="Previous session">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 4.6L7 13l8.4 8.4 1.4-1.4L9.8 13l7-7z"/></svg>
+          </button>
+          <button class="reel__nav reel__nav--next" id="reelNext" type="button" aria-label="Next session">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 4.6L7.2 6l7 7-7 7 1.4 1.4L17 13z"/></svg>
+          </button>
+        </div>
+        <div class="reel__side">
+          <div class="reel__side-head">
+            <p class="reel__side-title">All sessions</p>
+            <span class="reel__side-count" id="reelCount">01 / 08</span>
+          </div>
+          <div class="reel__rail" id="reelRail"></div>
+          <a class="reel__cta" id="reelCta" href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span id="reelCtaName">Book this cut</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="palm-decor palm-decor--right" aria-hidden="true" style="bottom:-20px;opacity:.6">
+      <svg viewBox="0 0 200 220" fill="currentColor"><path d="M98 220c2-54 4-96 10-132l6 1c-6 36-8 78-10 131zM110 82C96 60 70 46 40 44c26-12 58 0 74 26zM112 80C108 54 88 30 60 18c28-2 54 22 58 60zM114 82c12-24 38-40 68-40-22-18-56-6-70 38zM113 84c22-14 52-12 76 6-10-26-48-32-78-10zM112 86c-26-6-54 4-70 28 30-8 50-14 72-24z"/></svg>
+    </div>
+    <div class="section__container">
+      <div class="section__label"><span class="section__label-dot"></span>Real Talk</div>
+      <h2 class="section__heading">WHAT THE<br><em>BOYS SAY</em></h2>
+      <p class="reviews__intro">Straight from the chat — actual messages from clients after their cut. Nothing made up.</p>
+      <div class="reviews__grid">
+        <article class="reviews__card">
+          <div class="reviews__stars" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote class="reviews__quote">So clean! Best fade I&rsquo;ve had in Bali for sure &mdash; I&rsquo;ll be booking you every week.</blockquote>
+          <p class="reviews__who">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Skin fade client &middot; Australia
+          </p>
+          <figure class="reviews__proof">
+            <img src="/images/reviews/review-1.jpg" alt="WhatsApp message: Man! Just wanna say thanks for the cut bro. So clean! Best fade I've had in Bali for sure. I'll be booking you every week." width="811" height="282" loading="lazy">
+            <figcaption>Unedited WhatsApp message</figcaption>
+          </figure>
+        </article>
+        <article class="reviews__card">
+          <div class="reviews__stars" aria-label="5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote class="reviews__quote">Thanks very much for today! The best haircut I had in Bali &mdash; my mate loved his too.</blockquote>
+          <p class="reviews__who">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Curly fade client &middot; Villa session
+          </p>
+          <figure class="reviews__proof">
+            <img src="/images/reviews/review-2.jpg" alt="WhatsApp message: Thanks very much for today! The best haircut I had in Bali. My mate loved too. Thanks bro all the best." width="811" height="273" loading="lazy">
+            <figcaption>Unedited WhatsApp message</figcaption>
+          </figure>
+        </article>
+      </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta">
+    <div class="cta__wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 56" preserveAspectRatio="none" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M0 18c120-20 240-20 360 0s240 20 360 0 240-20 360 0 240 20 360 0"/>
+        <path d="M0 38c120-20 240-20 360 0s240 20 360 0 240-20 360 0 240 20 360 0"/>
+      </svg>
+    </div>
     <div class="section__container">
       <div class="cta__inner">
         <h2 class="cta__title">READY FOR A<br><em>FRESH CUT?</em></h2>
-        <p class="cta__text">Skip the queue. Book in advance and get a professional haircut at your doorstep in Bali.</p>
+        <p class="cta__text">Skip the queue. Book in advance and get a professional haircut at your doorstep &mdash; Uluwatu to Canggu, villa to clifftop.</p>
         <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener" class="btn btn--primary btn--large">
           <svg class="btn__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Book via WhatsApp
@@ -460,7 +674,8 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
           <a href="#areas">Areas</a>
           <a href="#pricing">Pricing</a>
           <a href="#cuts">Cuts</a>
-          <a href="#videos">Videos</a>
+          <a href="#videos">Sessions</a>
+          <a href="#reviews">Reviews</a>
           <a href="https://api.whatsapp.com/send/?phone=%2B6281336755157&text=Hey+Rangga%2C+I%27d+love+to+book+a+haircut+with+you&type=phone_number&app_absent=0" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
@@ -491,7 +706,7 @@ if(mobileClose)mobileClose.addEventListener('click',closeMobile);
 function closeMobile(){mobileNav.classList.remove('nav__mobile--open')}
 
 // Fade-in on scroll
-const fadeEls=document.querySelectorAll('.about__grid>div,.come-to-you__card,.pricing__card,.cta__inner,.section__label,.section__heading,.come-to-you__highlight,.pricing__sub,.gallery__track,.gallery__intro,.videos__intro,.videos__grid,.areas__intro,.areas-map-shell');
+const fadeEls=document.querySelectorAll('.about__grid>div,.come-to-you__card,.pricing__card,.cta__inner,.section__label,.section__heading,.come-to-you__highlight,.pricing__sub,.gallery__track,.gallery__intro,.reel__intro,.reel__shell,.reviews__intro,.reviews__card,.areas__intro,.areas-map-shell');
 fadeEls.forEach(el=>el.classList.add('fade-in'));
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 fadeEls.forEach(el=>obs.observe(el));
@@ -567,7 +782,7 @@ function makePinIcon(name,active){
     document.getElementById('areaKicker').textContent=area.tag;
     document.getElementById('areaTitle').textContent=area.name;
     document.getElementById('areaCopy').textContent=area.text;
-    document.getElementById('areaCtaName').textContent=area.name;
+    document.getElementById('areaCtaName').textContent='Book in '+area.name;
     document.getElementById('areaWhatsApp').href=areaWaUrl(area.name);
     chips.querySelectorAll('.areas-map-chip').forEach((chip,i)=>{
       chip.dataset.active=AREAS[i].id===id?'true':'false';
@@ -592,31 +807,163 @@ function makePinIcon(name,active){
   }
 })();
 
-// Gallery + videos from local media folders (populated from Drive assets)
-const CUT_IMAGES=[
-  // filled at build-time below
-];
-const CUT_VIDEOS=[
-  // filled at build-time below
+const WA_PHONE='%2B6281336755157';
+function waUrl(text){
+  return `https://api.whatsapp.com/send/?phone=${WA_PHONE}&text=${encodeURIComponent(text)}&type=phone_number&app_absent=0`;
+}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// Haircut types — photo, blurb, and the price it falls under
+const CUTS=[
+  {slug:'skin-fade',label:'Skin Fade',tag:'Most asked for',desc:'Tight on the sides, blended clean into the top.',price:'350K IDR'},
+  {slug:'textured-crop',label:'Textured Crop',tag:'Outdoor session',desc:'Short crop with movement up top and a sharp taper.',price:'350K IDR'},
+  {slug:'curly-fade',label:'Curly Fade',tag:'Curl specialist',desc:'Fade shaped around natural curl — no flat spots.',price:'350K IDR'},
+  {slug:'buzz-beard',label:'Buzz + Beard',tag:'Full grooming',desc:'Clean buzz with the beard lined up and shaped.',price:'250K IDR'},
+  {slug:'slick-back',label:'Slick Back',tag:'Classic finish',desc:'Length kept on top, tapered sides, beard tidied.',price:'250K IDR'},
+  {slug:'classic-taper',label:'Classic Taper',tag:'Low maintenance',desc:'Soft taper that grows out clean. Always sharp.',price:'350K IDR'}
 ];
 
-(function renderMedia(){
+// Session clips — poster + duration drive the rail UI
+const SESSIONS=[
+  {slug:'textured-crop',label:'Textured Crop',place:'Villa courtyard, Pererenan',dur:'0:04'},
+  {slug:'skin-fade',label:'Skin Fade',place:'Living room setup, Canggu',dur:'0:05'},
+  {slug:'curly-fade',label:'Curly Fade',place:'Chop Barber chair, Bali',dur:'0:07'},
+  {slug:'curly-fade-side',label:'Curly Fade — Side',place:'Finishing the shape up',dur:'0:10'},
+  {slug:'buzz-beard',label:'Buzz + Beard',place:'Home session, the Bukit',dur:'0:10'},
+  {slug:'slick-back',label:'Slick Back',place:'Villa session, Uluwatu',dur:'0:05'},
+  {slug:'classic-taper',label:'Classic Taper',place:'Open-air cut, Bali',dur:'0:02'},
+  {slug:'fresh-out',label:'Fresh Out',place:'Straight after the cut',dur:'0:07'}
+];
+
+// Cuts gallery — each card books that specific style
+(function renderCuts(){
   const track=document.getElementById('cutsTrack');
-  const grid=document.getElementById('videosGrid');
-  if(track){
-    if(!CUT_IMAGES.length){
-      track.innerHTML='<p style="color:var(--light-gray);padding:20px 0;font-size:.9rem">Cut photos coming soon — book Rangga and be next.</p>';
-    } else {
-      track.innerHTML=CUT_IMAGES.map((src,i)=>`<div class="gallery__card"><img src="${src}" alt="Ulu Home Cuts — cut ${i+1}" loading="lazy"><span class="gallery__card-label">Cut ${String(i+1).padStart(2,'0')}</span></div>`).join('');
-    }
+  if(!track)return;
+  track.innerHTML=CUTS.map(c=>`
+    <a class="gallery__card" href="${waUrl(`Hey Rangga, I'd love to book a ${c.label} (${c.price})`)}" target="_blank" rel="noopener" aria-label="Book a ${c.label} via WhatsApp">
+      <img src="/images/cuts/${c.slug}.jpg" alt="${esc(c.label)} by Ulu Home Cuts in Bali" width="900" height="1200" loading="lazy" decoding="async">
+      <span class="gallery__card-top">${esc(c.tag)}</span>
+      <span class="gallery__card-body">
+        <span class="gallery__card-label">${esc(c.label)}</span>
+        <span class="gallery__card-desc">${esc(c.desc)}</span>
+        <span class="gallery__card-foot">
+          <span class="gallery__card-price">${esc(c.price)}</span>
+          <span class="gallery__card-book">Book this &rarr;</span>
+        </span>
+      </span>
+    </a>`).join('');
+})();
+
+// Video reel — featured stage driven by the session rail
+(function initReel(){
+  const video=document.getElementById('reelVideo');
+  const rail=document.getElementById('reelRail');
+  const stage=document.getElementById('reelStage');
+  if(!video||!rail||!stage)return;
+
+  const playBtn=document.getElementById('reelPlay');
+  const muteBtn=document.getElementById('reelMute');
+  const fill=document.getElementById('reelFill');
+  const trackEl=document.getElementById('reelTrack');
+  const timeEl=document.getElementById('reelTime');
+  const ICON_PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>';
+  const ICON_PAUSE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>';
+  const ICON_MUTED='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h3l4-4v14l-4-4H4zM16.5 8.5l-1.4 1.4 2.1 2.1-2.1 2.1 1.4 1.4 2.1-2.1 2.1 2.1 1.4-1.4-2.1-2.1 2.1-2.1-1.4-1.4-2.1 2.1z"/></svg>';
+  const ICON_SOUND='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h3l4-4v14l-4-4H4zM14.5 8.3a5 5 0 010 7.4l1.4 1.4a7 7 0 000-10.2zM17.3 5.5a9 9 0 010 13l1.4 1.4a11 11 0 000-15.8z"/></svg>';
+
+  let index=0;
+
+  rail.innerHTML=SESSIONS.map((s,i)=>`
+    <button class="reel__thumb" type="button" data-index="${i}" data-active="${i===0}" aria-label="Play ${esc(s.label)} session">
+      <img src="/images/videos/${s.slug}-poster.jpg" alt="" width="270" height="480" loading="lazy" decoding="async">
+      <span class="reel__thumb-dur">${esc(s.dur)}</span>
+      <span class="reel__thumb-label">${esc(s.label)}</span>
+    </button>`).join('');
+  const thumbs=Array.from(rail.querySelectorAll('.reel__thumb'));
+
+  function fmt(t){
+    if(!isFinite(t)||t<0)t=0;
+    return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0');
   }
-  if(grid){
-    if(!CUT_VIDEOS.length){
-      grid.innerHTML='<p style="color:var(--light-gray);font-size:.9rem">Session videos coming soon.</p>';
-    } else {
-      grid.innerHTML=CUT_VIDEOS.map((src,i)=>`<div class="videos__item"><video src="${src}" controls playsinline preload="metadata" poster=""></video><span class="videos__item-label">Session ${String(i+1).padStart(2,'0')}</span></div>`).join('');
-    }
+
+  function load(i,autoplay){
+    index=(i+SESSIONS.length)%SESSIONS.length;
+    const s=SESSIONS[index];
+    video.poster=`/images/videos/${s.slug}-poster.jpg`;
+    video.src=`/images/videos/${s.slug}.mp4`;
+    document.getElementById('reelType').textContent=s.label;
+    document.getElementById('reelTitle').textContent=s.label;
+    document.getElementById('reelPlace').textContent=s.place;
+    document.getElementById('reelCount').textContent=String(index+1).padStart(2,'0')+' / '+String(SESSIONS.length).padStart(2,'0');
+    document.getElementById('reelCtaName').textContent='Book a '+s.label;
+    document.getElementById('reelCta').href=waUrl(`Hey Rangga, I saw the ${s.label} session on your site — I'd love to book that cut`);
+    thumbs.forEach((t,ti)=>t.dataset.active=String(ti===index));
+    fill.style.width='0%';
+    timeEl.textContent='0:00';
+    if(autoplay)video.play().catch(()=>{});
   }
+
+  thumbs.forEach(t=>t.addEventListener('click',()=>load(Number(t.dataset.index),true)));
+  document.getElementById('reelPrev').addEventListener('click',()=>load(index-1,true));
+  document.getElementById('reelNext').addEventListener('click',()=>load(index+1,true));
+
+  playBtn.addEventListener('click',()=>{
+    if(video.paused)video.play().catch(()=>{});else video.pause();
+  });
+  video.addEventListener('play',()=>{playBtn.innerHTML=ICON_PAUSE;playBtn.setAttribute('aria-label','Pause video')});
+  video.addEventListener('pause',()=>{playBtn.innerHTML=ICON_PLAY;playBtn.setAttribute('aria-label','Play video')});
+
+  muteBtn.addEventListener('click',()=>{
+    video.muted=!video.muted;
+    muteBtn.innerHTML=video.muted?ICON_MUTED:ICON_SOUND;
+    muteBtn.setAttribute('aria-label',video.muted?'Unmute video':'Mute video');
+  });
+
+  video.addEventListener('timeupdate',()=>{
+    if(!video.duration)return;
+    fill.style.width=(video.currentTime/video.duration*100).toFixed(2)+'%';
+    timeEl.textContent=fmt(video.currentTime);
+  });
+  trackEl.addEventListener('click',e=>{
+    if(!video.duration)return;
+    const r=trackEl.getBoundingClientRect();
+    video.currentTime=Math.min(Math.max((e.clientX-r.left)/r.width,0),1)*video.duration;
+  });
+
+  load(0,false);
+
+  // Play only while the reel is on screen
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(!reduce&&'IntersectionObserver' in window){
+    new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting)video.play().catch(()=>{});
+        else video.pause();
+      });
+    },{threshold:.45}).observe(stage);
+  }
+})();
+
+// Hero background video — desktop only, keeps mobile on the poster
+(function heroVideo(){
+  const holder=document.getElementById('heroMedia');
+  if(!holder)return;
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  if(window.innerWidth<768)return;
+  const conn=navigator.connection;
+  if(conn&&(conn.saveData||/2g/.test(conn.effectiveType||'')))return;
+
+  const v=document.createElement('video');
+  v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;
+  v.setAttribute('playsinline','');v.setAttribute('aria-hidden','true');
+  v.preload='auto';
+  v.poster='/images/videos/textured-crop-poster.jpg';
+  v.src='/images/videos/textured-crop.mp4';
+  v.addEventListener('canplay',()=>{
+    holder.innerHTML='';
+    holder.appendChild(v);
+    v.play().catch(()=>{});
+  },{once:true});
 })();
   </script>
 </body>
